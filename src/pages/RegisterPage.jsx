@@ -11,30 +11,32 @@ export default function RegisterPage(){
     const [password, setPassword] = useState("")
     const [confirm, setConfirm] = useState("")
     const navigate = useNavigate()
-    const [validEmail, setValidEmail] = useState({
-        isValid: true,
-        message: ""
-    })
+    const [validEmail, setValidEmail] = useState({isValid: true, message: ""})
     const passwordRegEx = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[!@#$%^&*()_+-]).{8,}$")
     const {textColorLight, backgroundPage}  = config.theme
 
-
     useEffect(() => {
-        axiosRequest.post("/auth/email", {
-            email
-        })
-            .then(res => {
-                setValidEmail({
-                    isValid: true,
-                    message: res.data.email
+        const emailRegEx = new RegExp("^[\\w-.]+@([\\w-]+\\.)+[\\w-]{2,4}$")
+        if (emailRegEx.test(email)){
+            axiosRequest.get(`/auth/exist-email?value=${email}`)
+                .then(res => {
+                    setValidEmail({
+                        isValid: true,
+                        message: res.data.email
+                    })
                 })
-            })
-            .catch(error => {
-                setValidEmail({
-                    isValid: false,
-                    message: error.response?.data.email
+                .catch(error => {
+                    setValidEmail({
+                        isValid: false,
+                        message: error.response?.data.email
+                    })
                 })
+        } else {
+            setValidEmail({
+                isValid: false,
+                message: "Email không hợp lệ"
             })
+        }
     }, [email]);
 
     const isValidName = () => {

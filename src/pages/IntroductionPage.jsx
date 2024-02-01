@@ -8,7 +8,7 @@ export default function IntroductionPage(){
         <div className={`min-h-screen ${config.theme.backgroundPage}`}>
             <IntroHeader/>
             <div className={`grid grid-cols-1 lg:grid-cols-5 ${config.theme.backgroundPage}`}>
-                <div className="col-span-1 lg:col-span-2 flex flex-col items-center pt-24 px-20 lg:px-16">
+                <div className="col-span-1 lg:col-span-2 flex flex-col items-center pt-24 px-10 lg:px-12">
                     <h1 className="flex mb-4 text-center text-3xl sm:text-5xl text-blue-700 font-bold">
                         VM tập hợp tất cả nhiệm vụ, thành viên nhóm và công cụ của bạn lại với nhau
                     </h1>
