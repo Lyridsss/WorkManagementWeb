@@ -1,6 +1,5 @@
 import Logo from "./Logo.jsx";
 import {Link, useLocation} from "react-router-dom";
-import {config} from "../config/index.jsx";
 
 export default function IntroHeader(){
     const location = useLocation()
@@ -16,9 +15,8 @@ export default function IntroHeader(){
             content: "Đăng ký"
         }
     ]
-
     return (
-        <div className={`navbar ${config.theme.backgroundHeader}`}>
+        <div className={`navbar bg-accent-content`}>
             <div className="navbar-start">
                 <Logo url="/intro"/>
             </div>
@@ -28,7 +26,7 @@ export default function IntroHeader(){
                         <Link
                             to={item.url}
                             key={item.id}
-                            className={`btn border-0 hidden lg:flex mx-2 hover:text-white ${location.pathname === item.url ? "bg-primary text-white" : "bg-gray-50 text-gray-900"}  hover:bg-primary`}
+                            className={`btn border-0 hidden lg:flex mx-2 hover:bg-primary hover:text-base-200 ${location.pathname === item.url ? "bg-primary text-base-200" : "bg-base-200 text-base-content"}`}
                         >
                             {item.content}
                         </Link>

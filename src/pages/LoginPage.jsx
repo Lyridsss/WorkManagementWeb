@@ -1,16 +1,15 @@
-import {config} from "../config/index.jsx";
 import IntroHeader from "../components/IntroHeader.jsx";
 import Input from "../components/Input.jsx";
 import {useContext, useState} from "react";
-import {axiosRequest} from "../utils/axiosRequest.js";
 import {AuthContext} from "../context/AuthenticationContext.jsx";
 import {useNavigate} from "react-router-dom";
+import {useAxiosRequest} from "../hooks/Request.jsx";
 
 export default function LoginPage(){
-    const {textColorLight, backgroundPage}  = config.theme
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [error, setError] = useState()
+    const axiosRequest = useAxiosRequest()
     const navigate = useNavigate()
     const { login } = useContext(AuthContext)
     const emailRegEx = new RegExp("^[\\w-.]+@([\\w-]+\\.)+[\\w-]{2,4}$")
@@ -50,11 +49,11 @@ export default function LoginPage(){
     }
 
     return (
-        <div className={`${backgroundPage} min-h-screen`}>
+        <div className="bg-base-100 min-h-screen">
             <IntroHeader/>
             <div className="flex justify-center items-center py-20 lg:py-32">
                 <div
-                    className="flex flex-col items-center py-4 px-6 border w-11/12 sm:w-3/4 lg:w-5/12 bg-gray-100 drop-shadow-md rounded-md"
+                    className="flex flex-col items-center py-4 px-6 border w-11/12 sm:w-3/4 lg:w-5/12 bg-base-200 drop-shadow-md rounded-md"
                 >
                     <h1
                         className="text-3xl text-primary font-bold px-4 py-4"
@@ -67,7 +66,7 @@ export default function LoginPage(){
                             setValue={emailHandler}
                             label="Địa chỉ email"
                             placeholder="Địa chỉ email ..."
-                            style={`${backgroundPage} ${textColorLight}`}
+                            style={"bg-base-100 text-base-content"}
                             type="text"
                             error={(isValidEmail() && error == null) ? null : error || "Email không hợp lệ"}
                         />
@@ -76,7 +75,7 @@ export default function LoginPage(){
                             setValue={setPassword}
                             label="Mật khẩu"
                             placeholder="Mật khẩu ..."
-                            style={`${backgroundPage} ${textColorLight}`}
+                            style={"bg-base-100 text-base-content"}
                             type="password"
                             error={isValidPassword() ? null : "Mật khẩu không hợp lệ"}
                         />

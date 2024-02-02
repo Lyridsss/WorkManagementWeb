@@ -10,7 +10,15 @@ export default {
   // eslint-disable-next-line no-undef
   plugins: [require("daisyui")],
   daisyui: {
-    themes: false,
+    themes: [{
+      light: {
+        // eslint-disable-next-line no-undef
+        ...require("daisyui/src/theming/themes")["light"],
+        "accent-content": "#1c1917",
+        "base-100": "#f9fafb",
+        "base-200": "#f3f4f6"
+      },
+    },],
     darkTheme: "light",
     base: true,
     styled: true,

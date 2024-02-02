@@ -1,19 +1,18 @@
 import IntroHeader from "../components/IntroHeader.jsx";
 import {useEffect, useState} from "react";
 import Input from "../components/Input.jsx";
-import {config} from "../config/index.jsx";
-import {axiosRequest} from "../utils/axiosRequest.js";
 import {useNavigate} from "react-router-dom";
+import {useAxiosRequest} from "../hooks/Request.jsx";
 
 export default function RegisterPage(){
     const [name, setName] = useState("")
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [confirm, setConfirm] = useState("")
+    const axiosRequest = useAxiosRequest()
     const navigate = useNavigate()
     const [validEmail, setValidEmail] = useState({isValid: true, message: ""})
     const passwordRegEx = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[!@#$%^&*()_+-]).{8,}$")
-    const {textColorLight, backgroundPage}  = config.theme
 
     useEffect(() => {
         const emailRegEx = new RegExp("^[\\w-.]+@([\\w-]+\\.)+[\\w-]{2,4}$")
@@ -68,10 +67,10 @@ export default function RegisterPage(){
     }
 
     return (
-        <div className={`${backgroundPage} min-h-screen`}>
+        <div className="bg-base-100 min-h-screen">
             <IntroHeader/>
             <div className="flex justify-center items-center py-20">
-                <div className="flex flex-col items-center py-4 px-6 border w-11/12 sm:w-3/4 lg:w-5/12 bg-gray-100 drop-shadow-md rounded-md">
+                <div className="flex flex-col items-center py-4 px-6 border w-11/12 sm:w-3/4 lg:w-5/12 bg-base-200 drop-shadow-md rounded-md">
                     <h1
                         className="text-3xl text-primary font-bold px-4 py-4"
                     >
@@ -83,7 +82,7 @@ export default function RegisterPage(){
                             setValue={setName}
                             label="Họ và tên"
                             placeholder="Họ và tên ..."
-                            style={`${backgroundPage} ${textColorLight}`}
+                            style={"bg-base-100 text-base-content"}
                             type="text"
                             error={isValidName() ? null : "Tên chứa tối đa 50 ký tự"}
                         />
@@ -92,7 +91,7 @@ export default function RegisterPage(){
                             setValue={setEmail}
                             label="Địa chỉ email"
                             placeholder="Địa chỉ email ..."
-                            style={`${backgroundPage} ${textColorLight}`}
+                            style={"bg-base-100 text-base-content"}
                             type="text"
                             error={validEmail.isValid ? null : validEmail.message}
                         />
@@ -101,7 +100,7 @@ export default function RegisterPage(){
                             setValue={setPassword}
                             label="Mật khẩu"
                             placeholder="Mật khẩu ..."
-                            style={`${backgroundPage} ${textColorLight}`}
+                            style={"bg-base-100 text-base-content"}
                             type="password"
                             error={isValidPassword() ? null : "Mật khẩu cần có tối thiểu 8 ký tự, bao gồm ít nhất một chữ hoa, chữ thường, kí tự và số."}
                         />
@@ -110,7 +109,7 @@ export default function RegisterPage(){
                             setValue={setConfirm}
                             label="Nhập lại mật khẩu"
                             placeholder="Nhập lại mật khẩu ..."
-                            style={`${backgroundPage} ${textColorLight}`}
+                            style={"bg-base-100 text-base-content"}
                             type="password"
                             error={isValidConfirmPassword() ? null : "Mật khẩu không khớp"}
                         />

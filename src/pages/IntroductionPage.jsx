@@ -1,13 +1,12 @@
 import {Link} from "react-router-dom";
 import IntroHeader from "../components/IntroHeader.jsx";
-import {config} from "../config/index.jsx";
 
 export default function IntroductionPage(){
 
     return (
-        <div className={`min-h-screen ${config.theme.backgroundPage}`}>
+        <div className="min-h-screen bg-base-100">
             <IntroHeader/>
-            <div className={`grid grid-cols-1 lg:grid-cols-5 ${config.theme.backgroundPage}`}>
+            <div className="grid grid-cols-1 lg:grid-cols-5 bg-base-100">
                 <div className="col-span-1 lg:col-span-2 flex flex-col items-center pt-24 px-10 lg:px-12">
                     <h1 className="flex mb-4 text-center text-3xl sm:text-5xl text-blue-700 font-bold">
                         VM tập hợp tất cả nhiệm vụ, thành viên nhóm và công cụ của bạn lại với nhau
