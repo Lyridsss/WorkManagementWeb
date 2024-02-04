@@ -9,9 +9,8 @@ import WorkspaceList from "./WorkspaceList.jsx";
 export default function Header(){
     const { logout } = useContext(AuthContext)
     const authAxiosRequest = useAuthAxiosRequest()
-
     const { isPending, data } = useQuery({
-        queryKey: ["account"],
+        queryKey: ["account-header"],
         queryFn: () => {
             return authAxiosRequest
                 .get("/account")
@@ -27,7 +26,7 @@ export default function Header(){
     return (
         <div className="navbar bg-accent-content">
             <div className="navbar-start">
-                <Logo/>
+                <Logo url="/"/>
                 <div className="dropdown dropdown-hover hidden lg:inline-block">
                     <div
                         tabIndex={0}
@@ -80,22 +79,44 @@ export default function Header(){
                     <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
                         {
                             isPending ?
-                                <div className="skeleton w-10 bg-base-200 rounded-full shrink-0"></div> :
-                                <div className="w-10 rounded-full">
-                                    <img alt="Avatar" src={data?.avatar}/>
-                                </div>
+                            <div className="skeleton w-10 bg-base-200 rounded-full shrink-0"></div> :
+                            <>
+                                {
+                                    data?.avatar == null ?
+                                        <div className="avatar placeholder">
+                                            <div className="bg-neutral text-neutral-content rounded-full w-10">
+                                                <span className="text-sm">
+                                                    {data?.name[0].toUpperCase()}
+                                                </span>
+                                            </div>
+                                        </div> :
+                                        <div className="w-10 rounded-full">
+                                            <img alt="Avatar" src={data?.avatar}/>
+                                        </div>
+                                }
+                            </>
                         }
                     </div>
                     <ul
                         tabIndex={0}
                         className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-72"
                     >
-                        <div className="flex flex-row items-center">
-                            <img
-                                alt="Avatar"
-                                src={data?.avatar}
-                                className="w-20 rounded-full"
-                            />
+                        <div className="flex flex-row items-center py-2">
+                            {
+                                data?.avatar == null ?
+                                    <div className="avatar placeholder">
+                                        <div className="bg-neutral text-neutral-content rounded-full w-20">
+                                                <span className="text-xl">
+                                                    {data?.name[0].toUpperCase()}
+                                                </span>
+                                        </div>
+                                    </div> :
+                                    <img
+                                        alt="Avatar"
+                                        src={data?.avatar}
+                                        className="w-20 rounded-full"
+                                    />
+                            }
                             <div className="mx-4">
                                 <p className="font-bold">
                                     {data?.name}

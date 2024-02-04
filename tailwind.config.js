@@ -16,7 +16,8 @@ export default {
         ...require("daisyui/src/theming/themes")["light"],
         "accent-content": "#1c1917",
         "base-100": "#f9fafb",
-        "base-200": "#f3f4f6"
+        "base-200": "#f3f4f6",
+        "base-300": "#e5e7eb",
       },
     },],
     darkTheme: "light",

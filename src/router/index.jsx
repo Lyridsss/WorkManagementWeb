@@ -6,6 +6,8 @@ import AuthUser from "../components/AuthUser.jsx";
 import ErrorPage from "../pages/ErrorPage.jsx";
 import RegisterPage from "../pages/RegisterPage.jsx";
 import LoginPage from "../pages/LoginPage.jsx";
+import AccountPage from "../pages/AccountPage.jsx";
+import Profile from "../layouts/Profile.jsx";
 
 export const router = createBrowserRouter(
     createRoutesFromElements(
@@ -22,6 +24,19 @@ export const router = createBrowserRouter(
                     </AuthUser>
                 }
             >
+            </Route>
+            <Route
+                path="/account"
+                element={
+                    <AuthUser>
+                        <AccountPage/>
+                    </AuthUser>
+                }
+            >
+                <Route
+                    index
+                    element={<Profile />}
+                ></Route>
             </Route>
             <Route
                 path="/intro"
