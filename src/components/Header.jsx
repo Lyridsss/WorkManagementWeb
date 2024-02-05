@@ -111,11 +111,13 @@ export default function Header(){
                                                 </span>
                                         </div>
                                     </div> :
-                                    <img
-                                        alt="Avatar"
-                                        src={data?.avatar}
-                                        className="w-20 rounded-full"
-                                    />
+                                    <div className="avatar">
+                                        <div className="w-20 rounded-full">
+                                            <img
+                                                alt="Avatar"
+                                                src={data?.avatar}/>
+                                        </div>
+                                    </div>
                             }
                             <div className="mx-4">
                                 <p className="font-bold">
@@ -127,7 +129,7 @@ export default function Header(){
                             </div>
                         </div>
                         <li>
-                            <Link to="/account" className="justify-between">
+                            <Link to="/account" className="justify-between hover:text-primary">
                                 Quản lý tài khoản
                             </Link>
                         </li>
@@ -136,6 +138,7 @@ export default function Header(){
                                 onClick={() => {
                                     logout()
                                 }}
+                                className="hover:text-error"
                             >
                                 Đăng xuất
                             </button>

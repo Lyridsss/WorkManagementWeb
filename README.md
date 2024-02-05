@@ -8,3 +8,5 @@ Hover: text-base-200
 white background: bg-base-100 (main)
 white background: bg-base-200 (component)
 text: text-base-content
+
+Chú ý đồng bộ header trang tài khoản với những trang khác

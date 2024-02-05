@@ -72,7 +72,7 @@ export default function RegisterPage(){
             <div className="flex justify-center items-center py-20">
                 <div className="flex flex-col items-center py-4 px-6 border w-11/12 sm:w-3/4 lg:w-5/12 bg-base-200 drop-shadow-md rounded-md">
                     <h1
-                        className="text-3xl text-primary font-bold px-4 py-4"
+                        className="text-2xl text-primary font-bold px-4 py-4"
                     >
                         ĐĂNG KÝ TÀI KHOẢN
                     </h1>
