@@ -8,19 +8,37 @@ import {useAxiosRequest} from "../hooks/Request.jsx";
 export default function LoginPage(){
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
-    const [error, setError] = useState()
+    const [error, setError] = useState(null)
     const axiosRequest = useAxiosRequest()
     const navigate = useNavigate()
     const { login } = useContext(AuthContext)
-    const emailRegEx = new RegExp("^[\\w-.]+@([\\w-]+\\.)+[\\w-]{2,4}$")
-    const passwordRegEx = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[!@#$%^&*()_+-]).{8,}$")
 
-    const isValidEmail = () => {
-        return emailRegEx.test(email)
+    const isErrorEmail = () => {
+        const emailRegEx = new RegExp("^[\\w-.]+@([\\w-]+\\.)+[\\w-]{2,4}$")
+        if (error){
+            return error
+        }
+        if (emailRegEx.test(email)){
+            return null
+        }
+        return "Email không hợp lệ"
     }
 
-    const isValidPassword = () => {
-        return passwordRegEx.test(password)
+    const isErrorPassword = () => {
+        const passwordRegEx = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[!@#$%^&*()_+-]).{8,}$")
+        if (passwordRegEx.test(password)){
+            return null
+        }
+        return "Mật khẩu không hợp lệ"
+    }
+
+    const isEnable = () => {
+        return isErrorEmail() == null && isErrorPassword() == null
+    }
+
+    const emailHandler = (email) => {
+        setEmail(email)
+        setError(null)
     }
 
     const submitHandler = () => {
@@ -43,11 +61,6 @@ export default function LoginPage(){
             })
     }
 
-    const emailHandler = (email) => {
-        setEmail(email)
-        setError(null)
-    }
-
     return (
         <div className="bg-base-100 min-h-screen">
             <IntroHeader/>
@@ -60,7 +73,7 @@ export default function LoginPage(){
                     >
                         ĐĂNG NHẬP
                     </h1>
-                    <form className="flex flex-col items-center w-full">
+                    <div className="flex flex-col items-center w-full">
                         <Input
                             value={email}
                             setValue={emailHandler}
@@ -68,7 +81,7 @@ export default function LoginPage(){
                             placeholder="Địa chỉ email ..."
                             style={"bg-base-100 text-base-content"}
                             type="text"
-                            error={(isValidEmail() && error == null) ? null : error || "Email không hợp lệ"}
+                            error={isErrorEmail()}
                         />
                         <Input
                             value={password}
@@ -77,19 +90,16 @@ export default function LoginPage(){
                             placeholder="Mật khẩu ..."
                             style={"bg-base-100 text-base-content"}
                             type="password"
-                            error={isValidPassword() ? null : "Mật khẩu không hợp lệ"}
+                            error={isErrorPassword()}
                         />
                         <button
                             className={`btn btn-outline btn-primary px-6 mt-5`}
-                            disabled={!isValidEmail() || !isValidPassword()}
-                            onClick={e => {
-                                e.preventDefault()
-                                submitHandler()
-                            }}
+                            disabled={!isEnable()}
+                            onClick={submitHandler}
                         >
                             Đăng nhập
                         </button>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>

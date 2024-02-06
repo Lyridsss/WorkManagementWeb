@@ -6,7 +6,6 @@ import {useNavigate, useOutletContext} from "react-router-dom";
 
 export default function EmailForm(){
     const [email, setEmail] = useState("")
-    const [confirm, setConfirm] = useState("")
     const authAxiosRequest = useAuthAxiosRequest()
     const navigate = useNavigate()
     const [account, setAccount, setLoading] = useOutletContext()
@@ -46,15 +45,8 @@ export default function EmailForm(){
         return validEmail.message
     }
 
-    const isErrorConfirm = () => {
-        if (email === confirm){
-            return null
-        }
-        return "Địa chỉ email không khớp"
-    }
-
     const isEnable = () => {
-        return isErrorEmail() == null && isErrorConfirm() == null
+        return isErrorEmail() == null
     }
 
     const updateEmail = () => {
@@ -92,14 +84,6 @@ export default function EmailForm(){
                     value={email}
                     setValue={setEmail}
                     error={isErrorEmail()}
-                />
-                <Input
-                    label="Nhập lại email"
-                    placeholder="Nhập lại email ..."
-                    type="text"
-                    value={confirm}
-                    setValue={setConfirm}
-                    error={isErrorConfirm()}
                 />
                 <button
                     className="btn btn-outline btn-primary px-6 my-4"

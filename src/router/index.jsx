@@ -9,6 +9,7 @@ import LoginPage from "../pages/LoginPage.jsx";
 import AccountPage from "../pages/AccountPage.jsx";
 import Profile from "../layouts/Profile.jsx";
 import EmailForm from "../layouts/EmailForm.jsx";
+import PasswordForm from "../layouts/PasswordForm.jsx";
 
 export const router = createBrowserRouter(
     createRoutesFromElements(
@@ -41,6 +42,10 @@ export const router = createBrowserRouter(
                 <Route
                     path="email"
                     element={<EmailForm/>}
+                ></Route>
+                <Route
+                    path="password"
+                    element={<PasswordForm/>}
                 ></Route>
             </Route>
             <Route

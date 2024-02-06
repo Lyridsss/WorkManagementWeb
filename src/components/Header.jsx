@@ -1,6 +1,6 @@
 import {Link} from "react-router-dom";
 import {useAuthAxiosRequest} from "../hooks/Request.jsx";
-import {useContext} from "react";
+import {useContext, useState} from "react";
 import {AuthContext} from "../context/AuthenticationContext.jsx";
 import {useQuery} from "@tanstack/react-query";
 import Logo from "./Logo.jsx";
@@ -9,8 +9,9 @@ import WorkspaceList from "./WorkspaceList.jsx";
 export default function Header(){
     const { logout } = useContext(AuthContext)
     const authAxiosRequest = useAuthAxiosRequest()
+    const [count, setCount] = useState(0)
     const { isPending, data } = useQuery({
-        queryKey: ["account-header"],
+        queryKey: ["account-header", count],
         queryFn: () => {
             return authAxiosRequest
                 .get("/account")
@@ -22,6 +23,17 @@ export default function Header(){
                 })
         }
     })
+
+    const updateNotification = () => {
+        authAxiosRequest
+            .patch("/account/notification")
+            .then(res => {
+                setCount(prev => prev + 1)
+            })
+            .catch(error => {
+                console.log(error)
+            })
+    }
 
     return (
         <div className="navbar bg-accent-content">
@@ -61,7 +73,12 @@ export default function Header(){
             </div>
             <div className="navbar-end">
                 <div className="dropdown dropdown-end mx-1">
-                    <div tabIndex={0} role="button" className="btn btn-ghost btn-circle hover:bg-gray-800">
+                    <div
+                        tabIndex={0}
+                        role="button"
+                        className="btn btn-ghost btn-circle hover:bg-gray-800"
+                        onClick={updateNotification}
+                    >
                         <div className="indicator">
                             <i className="fa-regular fa-bell text-xl text-base-200"></i>
                             <span className="badge badge-sm indicator-item">0</span>
