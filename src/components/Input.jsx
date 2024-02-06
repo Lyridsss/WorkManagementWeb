@@ -4,7 +4,7 @@ export default function Input({ value, setValue, label, placeholder, style, type
     const [isChange, setIsChange] = useState(false)
 
     return (
-        <label className="form-control w-full max-w-xs">
+        <label className="form-control w-full max-w-xs my-1">
             <div className="label">
                 <span className="label-text text-gray-500">{label}</span>
             </div>

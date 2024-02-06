@@ -8,6 +8,7 @@ import RegisterPage from "../pages/RegisterPage.jsx";
 import LoginPage from "../pages/LoginPage.jsx";
 import AccountPage from "../pages/AccountPage.jsx";
 import Profile from "../layouts/Profile.jsx";
+import EmailForm from "../layouts/EmailForm.jsx";
 
 export const router = createBrowserRouter(
     createRoutesFromElements(
@@ -26,7 +27,7 @@ export const router = createBrowserRouter(
             >
             </Route>
             <Route
-                path="/account"
+                path="account"
                 element={
                     <AuthUser>
                         <AccountPage/>
@@ -37,18 +38,22 @@ export const router = createBrowserRouter(
                     index
                     element={<Profile />}
                 ></Route>
+                <Route
+                    path="email"
+                    element={<EmailForm/>}
+                ></Route>
             </Route>
             <Route
-                path="/intro"
+                path="intro"
                 element={<IntroductionPage/>}
             ></Route>
             <Route
-                path="/register"
+                path="register"
                 element={<RegisterPage/>}
             >
             </Route>
             <Route
-                path="/login"
+                path="login"
                 element={<LoginPage/>}
             ></Route>
         </Route>

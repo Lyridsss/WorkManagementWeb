@@ -80,7 +80,7 @@ export default function LoginPage(){
                             error={isValidPassword() ? null : "Mật khẩu không hợp lệ"}
                         />
                         <button
-                            className={`btn btn-outline btn-primary px-6 mt-4`}
+                            className={`btn btn-outline btn-primary px-6 mt-5`}
                             disabled={!isValidEmail() || !isValidPassword()}
                             onClick={e => {
                                 e.preventDefault()

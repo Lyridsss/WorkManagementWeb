@@ -2,17 +2,18 @@ import IntroHeader from "../components/IntroHeader.jsx";
 import {useEffect, useState} from "react";
 import Input from "../components/Input.jsx";
 import {useNavigate} from "react-router-dom";
-import {useAxiosRequest} from "../hooks/Request.jsx";
+import { axiosRequest } from "../utils/axiosRequest.js";
 
 export default function RegisterPage(){
     const [name, setName] = useState("")
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [confirm, setConfirm] = useState("")
-    const axiosRequest = useAxiosRequest()
     const navigate = useNavigate()
-    const [validEmail, setValidEmail] = useState({isValid: true, message: ""})
-    const passwordRegEx = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[!@#$%^&*()_+-]).{8,}$")
+    const [validEmail, setValidEmail] = useState({
+        isValid: true,
+        message: ""
+    })
 
     useEffect(() => {
         const emailRegEx = new RegExp("^[\\w-.]+@([\\w-]+\\.)+[\\w-]{2,4}$")
@@ -38,16 +39,35 @@ export default function RegisterPage(){
         }
     }, [email]);
 
-    const isValidName = () => {
-        return name.length <= 50
+    const isErrorEmail = () => {
+        if (validEmail.isValid) {
+            return null
+        }
+        return validEmail.message
     }
 
-    const isValidPassword = () => {
-        return passwordRegEx.test(password)
+    const isErrorName = () => {
+        if (name === ""){
+            return "Tên không được để trống"
+        } else if (name.length > 50) {
+            return "Tên chứa tối đa 50 ký tự"
+        }
+        return null
     }
 
-    const isValidConfirmPassword = () => {
-        return password === confirm
+    const isErrorPassword = () => {
+        const passwordRegEx = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[!@#$%^&*()_+-]).{8,}$")
+        if (passwordRegEx.test(password)){
+            return null
+        }
+        return "Mật khẩu cần có tối thiểu 8 ký tự, bao gồm ít nhất một chữ hoa, chữ thường, kí tự và số"
+    }
+
+    const isErrorConfirm = () => {
+        if (password === confirm){
+            return null
+        }
+        return "Mật khẩu không khớp"
     }
 
     const register = () => {
@@ -62,21 +82,28 @@ export default function RegisterPage(){
                 navigate("/login")
             })
             .catch(error => {
-                console.log(error)
+                setValidEmail({
+                    isValid: false,
+                    message: error.response?.data.message
+                })
             })
+    }
+
+    const isEnable = () => {
+        return isErrorName() == null && isErrorEmail() == null && isErrorPassword() == null && isErrorConfirm() == null;
     }
 
     return (
         <div className="bg-base-100 min-h-screen">
             <IntroHeader/>
-            <div className="flex justify-center items-center py-20">
+            <div className="flex justify-center items-center py-14">
                 <div className="flex flex-col items-center py-4 px-6 border w-11/12 sm:w-3/4 lg:w-5/12 bg-base-200 drop-shadow-md rounded-md">
                     <h1
-                        className="text-2xl text-primary font-bold px-4 py-4"
+                        className="text-3xl text-primary font-bold px-4 py-4"
                     >
-                        ĐĂNG KÝ TÀI KHOẢN
+                        ĐĂNG KÝ
                     </h1>
-                    <form className="flex flex-col items-center w-full">
+                    <div className="flex flex-col items-center w-full">
                         <Input
                             value={name}
                             setValue={setName}
@@ -84,7 +111,7 @@ export default function RegisterPage(){
                             placeholder="Họ và tên ..."
                             style={"bg-base-100 text-base-content"}
                             type="text"
-                            error={isValidName() ? null : "Tên chứa tối đa 50 ký tự"}
+                            error={isErrorName()}
                         />
                         <Input
                             value={email}
@@ -93,7 +120,7 @@ export default function RegisterPage(){
                             placeholder="Địa chỉ email ..."
                             style={"bg-base-100 text-base-content"}
                             type="text"
-                            error={validEmail.isValid ? null : validEmail.message}
+                            error={isErrorEmail()}
                         />
                         <Input
                             value={password}
@@ -102,7 +129,7 @@ export default function RegisterPage(){
                             placeholder="Mật khẩu ..."
                             style={"bg-base-100 text-base-content"}
                             type="password"
-                            error={isValidPassword() ? null : "Mật khẩu cần có tối thiểu 8 ký tự, bao gồm ít nhất một chữ hoa, chữ thường, kí tự và số."}
+                            error={isErrorPassword()}
                         />
                         <Input
                             value={confirm}
@@ -111,19 +138,16 @@ export default function RegisterPage(){
                             placeholder="Nhập lại mật khẩu ..."
                             style={"bg-base-100 text-base-content"}
                             type="password"
-                            error={isValidConfirmPassword() ? null : "Mật khẩu không khớp"}
+                            error={isErrorConfirm()}
                         />
                         <button
-                            className={`btn btn-outline btn-primary px-6 mt-4`}
-                            disabled={!isValidConfirmPassword() || !isValidName() || !isValidPassword() || !validEmail.isValid}
-                            onClick={e => {
-                                e.preventDefault()
-                                register()
-                            }}
+                            className={`btn btn-outline btn-primary px-6 mt-5`}
+                            disabled={!isEnable()}
+                            onClick={register}
                         >
                             Đăng ký
                         </button>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>
