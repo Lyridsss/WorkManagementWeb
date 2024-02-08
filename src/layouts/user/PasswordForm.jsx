@@ -1,7 +1,7 @@
-import Input from "../components/Input.jsx";
+import Input from "../../components/Input.jsx";
 import {useContext, useState} from "react";
-import {useAuthAxiosRequest} from "../hooks/Request.jsx";
-import {AuthContext} from "../context/AuthenticationContext.jsx";
+import {useAuthAxiosRequest} from "../../hooks/Request.jsx";
+import {AuthContext} from "../../context/AuthenticationContext.jsx";
 
 export default function PasswordForm(){
     const [current, setCurrent] = useState("")

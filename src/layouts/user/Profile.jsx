@@ -1,7 +1,7 @@
-import Input from "../components/Input.jsx";
+import Input from "../../components/Input.jsx";
 import {useState} from "react";
 import {Link, useOutletContext} from "react-router-dom";
-import {useAuthAxiosRequest} from "../hooks/Request.jsx";
+import {useAuthAxiosRequest} from "../../hooks/Request.jsx";
 
 export default function Profile(){
     const [data, isPending, update] = useOutletContext()

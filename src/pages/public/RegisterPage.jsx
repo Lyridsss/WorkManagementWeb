@@ -1,8 +1,8 @@
-import IntroHeader from "../components/IntroHeader.jsx";
+import IntroHeader from "../../components/IntroHeader.jsx";
 import {useEffect, useState} from "react";
-import Input from "../components/Input.jsx";
+import Input from "../../components/Input.jsx";
 import {useNavigate} from "react-router-dom";
-import { axiosRequest } from "../utils/axiosRequest.js";
+import { axiosRequest } from "../../utils/axiosRequest.js";
 
 export default function RegisterPage(){
     const [name, setName] = useState("")

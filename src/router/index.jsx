@@ -1,15 +1,18 @@
 import {createBrowserRouter, createRoutesFromElements, Route} from "react-router-dom";
 import App from "../App.jsx";
-import IntroductionPage from "../pages/IntroductionPage.jsx";
+import IntroductionPage from "../pages/public/IntroductionPage.jsx";
 import HomePage from "../pages/HomePage.jsx";
 import AuthUser from "../components/AuthUser.jsx";
 import ErrorPage from "../pages/ErrorPage.jsx";
-import RegisterPage from "../pages/RegisterPage.jsx";
-import LoginPage from "../pages/LoginPage.jsx";
+import RegisterPage from "../pages/public/RegisterPage.jsx";
+import LoginPage from "../pages/public/LoginPage.jsx";
 import AccountPage from "../pages/AccountPage.jsx";
-import Profile from "../layouts/Profile.jsx";
-import EmailForm from "../layouts/EmailForm.jsx";
-import PasswordForm from "../layouts/PasswordForm.jsx";
+import Profile from "../layouts/user/Profile.jsx";
+import EmailForm from "../layouts/user/EmailForm.jsx";
+import PasswordForm from "../layouts/user/PasswordForm.jsx";
+import WorkspacesPage from "../pages/WorkspacesPage.jsx";
+import WorkspacesForm from "../layouts/workspaces/WorkspacesForm.jsx";
+import WorkspaceList from "../layouts/workspaces/WorkspaceList.jsx";
 
 export const router = createBrowserRouter(
     createRoutesFromElements(
@@ -22,10 +25,29 @@ export const router = createBrowserRouter(
                 index
                 element={
                     <AuthUser>
-                        <HomePage />
+                        <HomePage/>
                     </AuthUser>
                 }
             >
+            </Route>
+            <Route
+                path="workspaces"
+                element={
+                    <AuthUser>
+                        <WorkspacesPage/>
+                    </AuthUser>
+                }
+            >
+                <Route
+                    index
+                    element={<WorkspaceList/>}
+                ></Route>
+                <Route
+                    path="form"
+                    element={
+                        <WorkspacesForm/>
+                    }
+                ></Route>
             </Route>
             <Route
                 path="account"

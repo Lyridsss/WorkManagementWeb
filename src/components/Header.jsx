@@ -24,7 +24,7 @@ export default function Header({ isPending, data, update }){
     return (
         <div className="navbar bg-accent-content">
             <div className="navbar-start">
-                <Logo url="/"/>
+                <Logo url="/workspaces"/>
                 <div className="dropdown dropdown-hover hidden lg:inline-block">
                     <div
                         tabIndex={0}
@@ -53,9 +53,12 @@ export default function Header({ isPending, data, update }){
                         </li>
                     </ul>
                 </div>
-                <button className="btn btn-primary btn-sm mx-3.5 hidden lg:inline-flex">
+                <Link
+                    to="/workspaces/form"
+                    className="btn btn-primary btn-sm mx-3.5 hidden lg:inline-flex"
+                >
                     Tạo mới
-                </button>
+                </Link>
             </div>
             <div className="navbar-end">
                 <div className="dropdown dropdown-end mx-1">

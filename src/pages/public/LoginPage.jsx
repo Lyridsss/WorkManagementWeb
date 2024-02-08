@@ -1,9 +1,9 @@
-import IntroHeader from "../components/IntroHeader.jsx";
-import Input from "../components/Input.jsx";
+import IntroHeader from "../../components/IntroHeader.jsx";
+import Input from "../../components/Input.jsx";
 import {useContext, useState} from "react";
-import {AuthContext} from "../context/AuthenticationContext.jsx";
+import {AuthContext} from "../../context/AuthenticationContext.jsx";
 import {useNavigate} from "react-router-dom";
-import {useAxiosRequest} from "../hooks/Request.jsx";
+import {useAxiosRequest} from "../../hooks/Request.jsx";
 
 export default function LoginPage(){
     const [email, setEmail] = useState("")

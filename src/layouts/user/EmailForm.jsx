@@ -1,7 +1,7 @@
-import Input from "../components/Input.jsx";
+import Input from "../../components/Input.jsx";
 import {useEffect, useState} from "react";
-import {axiosRequest} from "../utils/axiosRequest.js";
-import {useAuthAxiosRequest} from "../hooks/Request.jsx";
+import {axiosRequest} from "../../utils/axiosRequest.js";
+import {useAuthAxiosRequest} from "../../hooks/Request.jsx";
 import {useNavigate, useOutletContext} from "react-router-dom";
 
 export default function EmailForm(){
