@@ -8,7 +8,7 @@ export default function EmailForm(){
     const [email, setEmail] = useState("")
     const authAxiosRequest = useAuthAxiosRequest()
     const navigate = useNavigate()
-    const [account, setAccount, setLoading] = useOutletContext()
+    const [data, isPending, update] = useOutletContext()
     const [validEmail, setValidEmail] = useState({
         isValid: true,
         message: ""
@@ -56,7 +56,7 @@ export default function EmailForm(){
         authAxiosRequest
             .patch("/account/email", data)
             .then(res => {
-                setAccount(res.data)
+                update()
                 navigate("/account")
             })
             .catch(error => {

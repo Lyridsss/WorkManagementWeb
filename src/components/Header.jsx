@@ -2,35 +2,21 @@ import {Link} from "react-router-dom";
 import {useAuthAxiosRequest} from "../hooks/Request.jsx";
 import {useContext, useState} from "react";
 import {AuthContext} from "../context/AuthenticationContext.jsx";
-import {useQuery} from "@tanstack/react-query";
 import Logo from "./Logo.jsx";
 import WorkspaceList from "./WorkspaceList.jsx";
 
-export default function Header(){
+export default function Header({ isPending, data, update }){
     const { logout } = useContext(AuthContext)
     const authAxiosRequest = useAuthAxiosRequest()
-    const [count, setCount] = useState(0)
-    const { isPending, data } = useQuery({
-        queryKey: ["account-header", count],
-        queryFn: () => {
-            return authAxiosRequest
-                .get("/account")
-                .then(res => res.data)
-                .catch(error => {
-                    if (error.response.status === 401){
-                        logout()
-                    }
-                })
-        }
-    })
 
     const updateNotification = () => {
         authAxiosRequest
             .patch("/account/notification")
             .then(res => {
-                setCount(prev => prev + 1)
+
             })
             .catch(error => {
+                // ???
                 console.log(error)
             })
     }

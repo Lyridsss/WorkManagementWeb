@@ -8,7 +8,7 @@ export default function WorkspaceList(){
     const { logout } = useContext(AuthContext)
     const authAxiosRequest = useAuthAxiosRequest()
 
-    const { data } = useQuery({
+    const { data, isError } = useQuery({
         queryKey: ["workspaces-nav"],
         queryFn: () => {
             return authAxiosRequest
@@ -26,7 +26,7 @@ export default function WorkspaceList(){
     return (
         <>
             {
-                data?.length === 0 ?
+                data?.length === 0 || isError ?
                     <>
                         <li className="h-14 flex justify-center items-center">
                             Không có không gian làm việc

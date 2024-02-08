@@ -4,29 +4,28 @@ import {Link, useOutletContext} from "react-router-dom";
 import {useAuthAxiosRequest} from "../hooks/Request.jsx";
 
 export default function Profile(){
-    const [account, setAccount, setLoading] = useOutletContext()
+    const [data, isPending, update] = useOutletContext()
     const authAxiosRequest = useAuthAxiosRequest()
-    const [name, setName] = useState(() => account?.name)
-    const [organization, setOrganization] = useState(() => account?.organization || "")
-    const [department, setDepartment] = useState(() => account?.department || "")
-    const [title, setTitle] = useState(() => account?.title || "")
+    const [name, setName] = useState(() => data?.name)
+    const [organization, setOrganization] = useState(() => data?.organization || "")
+    const [department, setDepartment] = useState(() => data?.department || "")
+    const [title, setTitle] = useState(() => data?.title || "")
 
     const updateProfileAccount = () => {
-        const data = {
+        const profile = {
             name,
             organization,
             department,
             title
         }
-        setLoading(true)
         authAxiosRequest
-            .patch("/account", data)
+            .patch("/account", profile)
             .then(res => {
-                setAccount(res.data)
-                setLoading(false)
+                update()
                 window.scrollTo(0, 0)
             })
             .catch(error => {
+                // ???
                 console.log(error)
             })
     }
@@ -118,7 +117,7 @@ export default function Profile(){
                             type="text"
                             placeholder="Địa chỉ email ..."
                             className="input input-bordered w-full max-w-md disabled:input-bordered ml-2 mr-1"
-                            value={account?.email}
+                            value={data?.email}
                             disabled
                         />
                         <Link
