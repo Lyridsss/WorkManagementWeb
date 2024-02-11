@@ -9,4 +9,8 @@ white background: bg-base-100 (main)
 white background: bg-base-200 (component)
 text: text-base-content
 
-Chú ý đồng bộ header trang tài khoản với những trang khác
+thành viên: <i class="fa-solid fa-user-group"></i>
+trang chủ: <i className="fa-solid fa-house"></i>
+bảng: <i className="fa-solid fa-table-columns"></i>
+cài đặt: <i className="fa-solid fa-gear"></i>
+arrow: <i class="fa-solid fa-chevron-right"></i>

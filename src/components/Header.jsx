@@ -33,7 +33,7 @@ export default function Header({ isPending, data, update }){
                     >
                         Các không gian làm việc
                     </div>
-                    <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
+                    <ul tabIndex={0} className="dropdown-content z-50 menu p-2 shadow bg-base-100 rounded-box w-52">
                         <WorkspaceList/>
                     </ul>
                 </div>
@@ -44,7 +44,7 @@ export default function Header({ isPending, data, update }){
                     >
                         Đã đánh dấu sao
                     </div>
-                    <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
+                    <ul tabIndex={0} className="dropdown-content z-50 menu p-2 shadow bg-base-100 rounded-box w-52">
                         <li>
                             <a>Item 1</a>
                         </li>
@@ -55,7 +55,7 @@ export default function Header({ isPending, data, update }){
                 </div>
                 <Link
                     to="/workspaces/form"
-                    className="btn btn-primary btn-sm mx-3.5 hidden lg:inline-flex"
+                    className="btn btn-primary btn-sm mx-3.5"
                 >
                     Tạo mới
                 </Link>
@@ -73,7 +73,7 @@ export default function Header({ isPending, data, update }){
                             <span className="badge badge-sm indicator-item">0</span>
                         </div>
                     </div>
-                    <div tabIndex={0} className="mt-3 z-[1] card card-compact dropdown-content w-80 bg-base-200 shadow">
+                    <div tabIndex={0} className="mt-3 z-50 card card-compact dropdown-content w-80 bg-base-200 shadow">
                         <div className="card-body">
                             <div>
                                 Một số thông báo
@@ -105,7 +105,7 @@ export default function Header({ isPending, data, update }){
                     </div>
                     <ul
                         tabIndex={0}
-                        className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-72"
+                        className="menu menu-sm dropdown-content mt-3 z-50 p-2 shadow bg-base-100 rounded-box w-72"
                     >
                         <div className="flex flex-row items-center py-2">
                             {

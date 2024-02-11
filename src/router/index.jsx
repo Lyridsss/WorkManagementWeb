@@ -12,7 +12,7 @@ import EmailForm from "../layouts/user/EmailForm.jsx";
 import PasswordForm from "../layouts/user/PasswordForm.jsx";
 import WorkspacesPage from "../pages/WorkspacesPage.jsx";
 import WorkspacesForm from "../layouts/workspaces/WorkspacesForm.jsx";
-import WorkspaceList from "../layouts/workspaces/WorkspaceList.jsx";
+import Workspaces from "../layouts/workspaces/Workspaces.jsx";
 
 export const router = createBrowserRouter(
     createRoutesFromElements(
@@ -40,7 +40,7 @@ export const router = createBrowserRouter(
             >
                 <Route
                     index
-                    element={<WorkspaceList/>}
+                    element={<Workspaces/>}
                 ></Route>
                 <Route
                     path="form"
