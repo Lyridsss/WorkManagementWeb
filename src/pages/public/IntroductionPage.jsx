@@ -1,5 +1,5 @@
 import {Link} from "react-router-dom";
-import IntroHeader from "../../components/IntroHeader.jsx";
+import IntroHeader from "../../components/header/IntroHeader.jsx";
 
 export default function IntroductionPage(){
 

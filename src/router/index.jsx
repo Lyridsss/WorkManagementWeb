@@ -2,7 +2,7 @@ import {createBrowserRouter, createRoutesFromElements, Route} from "react-router
 import App from "../App.jsx";
 import IntroductionPage from "../pages/public/IntroductionPage.jsx";
 import HomePage from "../pages/HomePage.jsx";
-import AuthUser from "../components/AuthUser.jsx";
+import AuthUser from "../components/auth/AuthUser.jsx";
 import ErrorPage from "../pages/ErrorPage.jsx";
 import RegisterPage from "../pages/public/RegisterPage.jsx";
 import LoginPage from "../pages/public/LoginPage.jsx";
@@ -10,9 +10,13 @@ import AccountPage from "../pages/AccountPage.jsx";
 import Profile from "../layouts/user/Profile.jsx";
 import EmailForm from "../layouts/user/EmailForm.jsx";
 import PasswordForm from "../layouts/user/PasswordForm.jsx";
-import WorkspacesPage from "../pages/WorkspacesPage.jsx";
+import WorkspacesPage from "../pages/workspace/WorkspacesPage.jsx";
 import WorkspacesForm from "../layouts/workspaces/WorkspacesForm.jsx";
 import Workspaces from "../layouts/workspaces/Workspaces.jsx";
+import Workspace from "../layouts/workspaces/Workspace.jsx";
+import TablePage from "../pages/table/TablePage.jsx";
+import TableForm from "../layouts/table/TableForm.jsx";
+import WorkspaceHomeLayout from "../layouts/workspaces/WorkspaceHomeLayout.jsx";
 
 export const router = createBrowserRouter(
     createRoutesFromElements(
@@ -47,6 +51,26 @@ export const router = createBrowserRouter(
                     element={
                         <WorkspacesForm/>
                     }
+                ></Route>
+                <Route
+                    path=":workspaceId"
+                    element={
+                        <Workspace/>
+                    }
+                >
+                    <Route
+                        index
+                        element={<WorkspaceHomeLayout/>}
+                    ></Route>
+                </Route>
+            </Route>
+            <Route
+                path="tables"
+                element={<TablePage/>}
+            >
+                <Route
+                    path="form"
+                    element={<TableForm/>}
                 ></Route>
             </Route>
             <Route

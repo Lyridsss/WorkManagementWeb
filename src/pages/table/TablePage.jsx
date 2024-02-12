@@ -1,16 +1,16 @@
 import {useContext, useState} from "react";
-import {AuthContext} from "../context/AuthenticationContext.jsx";
-import {useAuthAxiosRequest} from "../hooks/Request.jsx";
+import {AuthContext} from "../../context/AuthenticationContext.jsx";
+import {useAuthAxiosRequest} from "../../hooks/Request.jsx";
 import {useQuery} from "@tanstack/react-query";
-import Header from "../components/Header.jsx";
+import Header from "../../components/header/Header.jsx";
 import {Outlet} from "react-router-dom";
 
-export default function WorkspacesPage(){
+export default function TablePage(){
     const { logout } = useContext(AuthContext)
     const [times, setTimes] = useState(0)
     const authAxiosRequest = useAuthAxiosRequest()
     const { isPending, data } = useQuery({
-        queryKey: ["user-home-page", times],
+        queryKey: ["user-table-page", times],
         queryFn: () => {
             return authAxiosRequest
                 .get("/account")

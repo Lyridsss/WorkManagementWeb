@@ -2,7 +2,7 @@ import {useAuthAxiosRequest} from "../../hooks/Request.jsx";
 import {useQuery} from "@tanstack/react-query";
 import {Link} from "react-router-dom";
 import {useState} from "react";
-import Workspace from "../../components/Workspace.jsx";
+import WorkspaceHomeComponent from "../../components/workspace/WorkspaceHomeComponent.jsx";
 
 export default function Workspaces(){
     const authAxiosRequest = useAuthAxiosRequest()
@@ -39,11 +39,13 @@ export default function Workspaces(){
                             <div className="drawer">
                                 <input id="workspaces-list-drawer-toggle" type="checkbox" className="drawer-toggle"/>
                                 <div className="drawer-content">
-                                    <label htmlFor="workspaces-list-drawer-toggle" className="btn px-2 bg-inherit drawer-button">
-                                        <p>
-                                            Danh sách không gian làm việc
-                                        </p>
-                                        <i className="fa-solid fa-chevron-right"></i>
+                                    <label htmlFor="workspaces-list-drawer-toggle" className="btn bg-inherit hover:btn-primary px-2 drawer-button">
+                                        <div className="flex items-center text-[16px]">
+                                            <i className="fa-solid fa-list mr-2"></i>
+                                            <p>
+                                                Danh sách không gian làm việc
+                                            </p>
+                                        </div>
                                     </label>
                                 </div>
                                 <div className="drawer-side z-50 top-[68px]">
@@ -66,6 +68,12 @@ export default function Workspaces(){
                                                     </button>
                                                 </li>
                                             )
+                                        }
+                                        {
+                                            data?.length === 0 &&
+                                            <div>
+                                                Không có không gian làm việc
+                                            </div>
                                         }
                                     </ul>
                                 </div>
@@ -126,7 +134,7 @@ export default function Workspaces(){
                                                             </p>
                                                         </button>
                                                         <Link
-                                                            to={`/workspaces/${workspace.id}/tables`}
+                                                            to={`/workspaces/${workspace.id}`}
                                                             className="flex items-center my-1 py-1 rounded-md hover:bg-base-300"
                                                         >
                                                             <i className="fa-solid fa-table-columns text-base-content px-2 text-lg w-11 flex justify-start"></i>
@@ -163,7 +171,7 @@ export default function Workspaces(){
                             }
                         </div>
                         <div className="col-span-1 md:col-span-4 lg:col-span-5 xl:col-span-6 flex px-4">
-                            <Workspace workspaceId={workspaceId}/>
+                            <WorkspaceHomeComponent workspaceId={workspaceId}/>
                         </div>
                     </div>
             }

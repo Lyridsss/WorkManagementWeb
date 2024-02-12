@@ -1,5 +1,5 @@
-import IntroHeader from "../../components/IntroHeader.jsx";
-import Input from "../../components/Input.jsx";
+import IntroHeader from "../../components/header/IntroHeader.jsx";
+import Input from "../../components/utils/Input.jsx";
 import {useContext, useState} from "react";
 import {AuthContext} from "../../context/AuthenticationContext.jsx";
 import {useNavigate} from "react-router-dom";

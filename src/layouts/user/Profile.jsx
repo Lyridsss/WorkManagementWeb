@@ -1,4 +1,4 @@
-import Input from "../../components/Input.jsx";
+import Input from "../../components/utils/Input.jsx";
 import {useState} from "react";
 import {Link, useOutletContext} from "react-router-dom";
 import {useAuthAxiosRequest} from "../../hooks/Request.jsx";

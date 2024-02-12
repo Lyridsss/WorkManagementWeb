@@ -1,6 +1,6 @@
-import IntroHeader from "../../components/IntroHeader.jsx";
+import IntroHeader from "../../components/header/IntroHeader.jsx";
 import {useEffect, useState} from "react";
-import Input from "../../components/Input.jsx";
+import Input from "../../components/utils/Input.jsx";
 import {useNavigate} from "react-router-dom";
 import { axiosRequest } from "../../utils/axiosRequest.js";
 

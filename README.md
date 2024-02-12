@@ -14,3 +14,4 @@ trang chủ: <i className="fa-solid fa-house"></i>
 bảng: <i className="fa-solid fa-table-columns"></i>
 cài đặt: <i className="fa-solid fa-gear"></i>
 arrow: <i class="fa-solid fa-chevron-right"></i>
+danh sach: <i class="fa-solid fa-list"></i>

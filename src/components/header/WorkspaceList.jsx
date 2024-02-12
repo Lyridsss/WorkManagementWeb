@@ -1,6 +1,6 @@
 import {useContext} from "react";
-import {AuthContext} from "../context/AuthenticationContext.jsx";
-import {useAuthAxiosRequest} from "../hooks/Request.jsx";
+import {AuthContext} from "../../context/AuthenticationContext.jsx";
+import {useAuthAxiosRequest} from "../../hooks/Request.jsx";
 import {useQuery} from "@tanstack/react-query";
 import {Link} from "react-router-dom";
 

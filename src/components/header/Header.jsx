@@ -1,7 +1,7 @@
 import {Link} from "react-router-dom";
-import {useAuthAxiosRequest} from "../hooks/Request.jsx";
+import {useAuthAxiosRequest} from "../../hooks/Request.jsx";
 import {useContext, useState} from "react";
-import {AuthContext} from "../context/AuthenticationContext.jsx";
+import {AuthContext} from "../../context/AuthenticationContext.jsx";
 import Logo from "./Logo.jsx";
 import WorkspaceList from "./WorkspaceList.jsx";
 

@@ -1,10 +1,7 @@
-import Header from "../components/Header.jsx";
+import Header from "../components/header/Header.jsx";
 import {Link, Outlet, useLocation} from "react-router-dom";
 import {useContext, useEffect, useState} from "react";
 import {AuthContext} from "../context/AuthenticationContext.jsx";
-import {axiosAuthRequest} from "../utils/axiosRequest.js";
-import Logo from "../components/Logo.jsx";
-import WorkspaceList from "../components/WorkspaceList.jsx";
 import {useQuery} from "@tanstack/react-query";
 import {useAuthAxiosRequest} from "../hooks/Request.jsx";
 
