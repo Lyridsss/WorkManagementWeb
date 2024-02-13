@@ -112,9 +112,9 @@ export default function AccountPage(){
                                         {data?.avatar == null ?
                                             <div className="avatar placeholder">
                                                 <div className="bg-neutral text-neutral-content rounded-full w-20">
-                                        <span className="text-xl">
-                                            {data?.name[0].toUpperCase()}
-                                        </span>
+                                                    <span className="text-xl">
+                                                        {data?.name[0].toUpperCase()}
+                                                    </span>
                                                 </div>
                                             </div> :
                                             <div className="avatar">
@@ -129,7 +129,7 @@ export default function AccountPage(){
                                     </div>
                                     <ul tabIndex={0}
                                         className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-32">
-                                        <li>
+                                        <li className="hover:text-primary">
                                             <button
                                                 onClick={() => document.getElementById('upload-avatar').showModal()}
                                             >
@@ -138,7 +138,7 @@ export default function AccountPage(){
                                         </li>
                                         {
                                             data?.avatar != null &&
-                                            <li>
+                                            <li className="hover:text-error">
                                                 <button onClick={deleteImageHandler}>
                                                     Xóa ảnh
                                                 </button>
@@ -154,9 +154,9 @@ export default function AccountPage(){
                                                         <div className="avatar placeholder">
                                                             <div
                                                                 className="bg-neutral text-neutral-content rounded-full w-32">
-                                                        <span className="text-3xl">
-                                                            <i className="fa-solid fa-upload"></i>
-                                                        </span>
+                                                                <span className="text-3xl">
+                                                                    <i className="fa-solid fa-upload"></i>
+                                                                </span>
                                                             </div>
                                                         </div> :
                                                         <div className="avatar">
@@ -178,20 +178,20 @@ export default function AccountPage(){
                                                     hidden
                                                 />
                                                 <span className="my-2 text-sm">
-                                            Tải hình ảnh
-                                        </span>
+                                                    Tải hình ảnh
+                                                </span>
                                             </label>
                                             <div className="modal-action">
                                                 <form method="dialog">
                                                     <button
-                                                        className="btn"
+                                                        className="btn hover:btn-primary mr-2"
                                                         disabled={avatar == null}
                                                         onClick={updateImageHandler}
                                                     >
                                                         Cập nhật
                                                     </button>
                                                     <button
-                                                        className="btn"
+                                                        className="btn hover:btn-error hover:text-base-100"
                                                         onClick={() => {
                                                             avatar && URL.revokeObjectURL(avatar.url)
                                                             setAvatar(null)
