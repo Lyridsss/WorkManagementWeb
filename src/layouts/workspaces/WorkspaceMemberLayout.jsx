@@ -1,7 +1,12 @@
-import {Link, useOutletContext} from "react-router-dom";
+import {Link, useLoaderData, useOutletContext} from "react-router-dom";
+import {useState} from "react";
+import {useQuery} from "@tanstack/react-query";
+import MemberList from "../../components/workspace/MemberList.jsx";
 
 export default function WorkspaceMemberLayout(){
     const [data, isPending, isError, update] = useOutletContext()
+    const [times, setTimes] = useState(0)
+    const account = useLoaderData()
 
     return (
         <>
@@ -47,6 +52,43 @@ export default function WorkspaceMemberLayout(){
                                 <p className="my-0.5 text-sm">
                                     {data?.description}
                                 </p>
+                            </div>
+                        </div>
+                        <div className="w-full flex flex-col mt-2">
+                            <div className="flex flex-row justify-between items-center">
+                                <div className="flex items-center font-bold">
+                                    <i className="fa-solid fa-list text-lg"></i>
+                                    <p className="text-lg ml-1">
+                                        Thành viên
+                                    </p>
+                                </div>
+                                {data?.role === "ADMIN" &&
+                                    <div className="p-2 rounded-full hover:text-primary hover:cursor-pointer">
+                                        <i className="fa-solid fa-user-plus"></i>
+                                    </div>
+                                }
+                            </div>
+                            {data?.role === "ADMIN" &&
+                                <div className="w-full flex">
+                                    <p>
+                                    <span className="font-bold mr-2 text-error">
+                                        Lưu ý:
+                                    </span>
+                                        Để tránh việc mất kiểm soát đối với không gian làm việc. Bạn sẽ không thể rời
+                                        khỏi
+                                        hay cập nhật lại quyền cho bản thân
+                                        nếu bạn là quản trị viên duy nhất của không gian làm việc.
+                                    </p>
+                                </div>
+                            }
+                            <div className="w-full flex mt-2">
+                                <MemberList
+                                    workspace={data}
+                                    updateMemberList={times}
+                                    setUpdateMemberList={setTimes}
+                                    account={account}
+                                    updateWorkspaceFunc={update}
+                                />
                             </div>
                         </div>
                     </div>

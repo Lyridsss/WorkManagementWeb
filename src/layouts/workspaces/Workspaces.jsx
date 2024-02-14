@@ -34,18 +34,16 @@ export default function Workspaces(){
                     <div className="w-screen h-screen flex justify-center items-center">
                         <span className="loading loading-spinner loading-lg text-primary"></span>
                     </div> :
-                    <div className="w-full grid grid-cols-1 md:grid-cols-6 lg:grid-cols-7 xl:grid-cols-8 gap-2 p-4">
-                        <div className="flex md:hidden px-4">
+                    <div className="w-full grid grid-cols-1 md:grid-cols-6 lg:grid-cols-7 xl:grid-cols-8 gap-2 py-2 px-0 md:p-4">
+                        <div className="flex md:hidden">
                             <div className="drawer">
                                 <input id="workspaces-list-drawer-toggle" type="checkbox" className="drawer-toggle"/>
                                 <div className="drawer-content">
-                                    <label htmlFor="workspaces-list-drawer-toggle" className="btn bg-inherit hover:btn-primary px-2 drawer-button">
-                                        <div className="flex items-center text-[16px]">
-                                            <i className="fa-solid fa-list mr-2"></i>
-                                            <p>
-                                                Danh sách không gian làm việc
-                                            </p>
-                                        </div>
+                                    <label
+                                        htmlFor="workspaces-list-drawer-toggle"
+                                        className="drawer-button text-xl p-2 rounded-r-full bg-base-300 hover:bg-info hover:text-base-100 hover:cursor-pointer"
+                                    >
+                                        <i className="fa-solid fa-chevron-right"></i>
                                     </label>
                                 </div>
                                 <div className="drawer-side z-50 top-[68px]">
@@ -170,7 +168,7 @@ export default function Workspaces(){
                                     </div>
                             }
                         </div>
-                        <div className="col-span-1 md:col-span-4 lg:col-span-5 xl:col-span-6 flex px-4">
+                        <div className="col-span-1 md:col-span-4 lg:col-span-5 xl:col-span-6 flex px-2 md:px-4">
                             <WorkspaceHomeComponent workspaceId={workspaceId}/>
                         </div>
                     </div>

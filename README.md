@@ -15,3 +15,5 @@ bảng: <i className="fa-solid fa-table-columns"></i>
 cài đặt: <i className="fa-solid fa-gear"></i>
 arrow: <i class="fa-solid fa-chevron-right"></i>
 danh sach: <i class="fa-solid fa-list"></i>
+hien thi: <i class="fa-solid fa-chevron-right"></i>
+them thanh vien: <i className="fa-solid fa-user-plus"></i>

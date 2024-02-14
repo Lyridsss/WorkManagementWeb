@@ -1,5 +1,7 @@
 import {createBrowserRouter, createRoutesFromElements, Route} from "react-router-dom";
 import App from "../App.jsx";
+import { axiosAuthRequest } from "../utils/axiosRequest.js";
+import { tokenService } from "../services/tokenService.jsx";
 import IntroductionPage from "../pages/public/IntroductionPage.jsx";
 import HomePage from "../pages/HomePage.jsx";
 import AuthUser from "../components/auth/AuthUser.jsx";
@@ -66,11 +68,17 @@ export const router = createBrowserRouter(
                     ></Route>
                     <Route
                         path="settings"
-                        element={<WorkspaceSettingsLayout />}
+                        element={<WorkspaceSettingsLayout/>}
                     ></Route>
                     <Route
                         path="members"
-                        element={<WorkspaceMemberLayout />}
+                        element={<WorkspaceMemberLayout/>}
+                        loader={() => {
+                            return axiosAuthRequest(tokenService.getToken())
+                                .get("/account")
+                                .then(res => res.data)
+                                .catch(error => error)
+                        }}
                     ></Route>
                 </Route>
             </Route>
