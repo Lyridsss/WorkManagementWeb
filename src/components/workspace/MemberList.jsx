@@ -2,7 +2,7 @@ import {useQuery} from "@tanstack/react-query";
 import {useAuthAxiosRequest} from "../../hooks/Request.jsx";
 import {useState} from "react";
 
-export default function MemberList({ updateMemberList, setUpdateMemberList, workspace, account, updateWorkspaceFunc }){
+export default function MemberList({ updateMemberList, setUpdateMemberList, workspace, account, updateWorkspaceFunc, roleConverter, roleList }){
     const authAxiosRequest = useAuthAxiosRequest()
     const [isUpdate, setIsUpdate] = useState(false)
     const { data, isPending, isError } = useQuery({
@@ -64,32 +64,31 @@ export default function MemberList({ updateMemberList, setUpdateMemberList, work
                                     </h4>
                                 </div>
                             </div>
-                            <div className="flex items-center">
+                            <div className="flex flex-col sm:flex-row items-center">
                                 {
                                     workspace?.role === "ADMIN" ?
                                         <>
                                             <button
-                                                className="btn btn-primary w-[93px]"
+                                                className="w-28 flex justify-start hover:text-primary hover:cursor-pointer disabled:text-gray-500 disabled:cursor-no-drop"
                                                 disabled={!isUpdate}
                                             >
-                                                {workspace.role}
+                                                {roleConverter(workspace.role)}
                                             </button>
                                             <button
                                                 disabled={!isUpdate}
-                                                className="btn btn-error text-base-200 hover:text-base-100 w-[85px] ml-2"
+                                                className="w-20 hover:text-error hover:cursor-pointer disabled:text-gray-500 disabled:cursor-no-drop ml-2"
                                             >
                                                 Rời đi
                                             </button>
                                         </> :
                                         <>
-                                            <button
-                                                className="btn btn-primary w-[93px]"
-                                                disabled={true}
+                                            <div
+                                                className="w-28 flex justify-start"
                                             >
-                                                {workspace.role}
-                                            </button>
+                                                {roleConverter(workspace.role)}
+                                            </div>
                                             <button
-                                                className="btn btn-error text-base-200 hover:text-base-100 w-[85px] ml-2"
+                                                className="w-20 hover:text-error hover:cursor-pointer ml-2"
                                             >
                                                 Rời đi
                                             </button>
@@ -132,33 +131,31 @@ export default function MemberList({ updateMemberList, setUpdateMemberList, work
                                             </h4>
                                         </div>
                                     </div>
-                                    <div className="flex items-center">
+                                    <div className="flex flex-col sm:flex-row items-center">
                                         {
                                             workspace?.role === "ADMIN" ?
                                                 <>
                                                     <button
-                                                        className="btn btn-primary px-3 w-[93px]"
+                                                        className="w-28 flex justify-start hover:text-primary hover:cursor-pointer"
                                                     >
-                                                        {member.role}
+                                                        {roleConverter(member.role)}
                                                     </button>
                                                     <button
-                                                        className="btn btn-error text-base-200 hover:text-base-100 ml-2 w-[85px]"
+                                                        className="w-20 hover:text-error hover:cursor-pointer ml-2"
                                                     >
                                                         Loại bỏ
                                                     </button>
                                                 </> :
                                                 <>
-                                                    <button
-                                                        className="btn btn-primary w-[93px]"
-                                                        disabled={true}
+                                                    <div
+                                                        className="w-28 flex justify-start"
                                                     >
-                                                        {member.role}
-                                                    </button>
-                                                    <button
-                                                        disabled={true}
-                                                        className="btn btn-error text-base-200 hover:text-base-100 w-[85px] ml-2 disabled:bg-inherit"
+                                                        {roleConverter(member.role)}
+                                                    </div>
+                                                    <div
+                                                        className="w-20 h-10 ml-2"
                                                     >
-                                                    </button>
+                                                    </div>
                                                 </>
                                         }
                                     </div>
