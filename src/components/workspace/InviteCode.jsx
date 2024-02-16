@@ -5,6 +5,7 @@ import {useState} from "react";
 export default function InviteCode({ workspaceId }){
     const authAxiosRequest = useAuthAxiosRequest()
     const [inviteUrl, setInviteUrl] = useState(null)
+    const [copy, setCopy] = useState(false)
     const {data, isPending, isError} = useQuery({
         queryKey: ["invite-code", workspaceId],
         queryFn: () => {
@@ -39,13 +40,16 @@ export default function InviteCode({ workspaceId }){
                         .writeText(url)
                         .then(() => {
                             setInviteUrl(url)
+                            displayCopy()
                         })
                 })
                 .catch(error => {
                     console.log(error)
                 })
         } else {
-            navigator.clipboard.writeText(inviteUrl).then(() => {})
+            navigator.clipboard.writeText(inviteUrl).then(() => {
+                displayCopy()
+            })
         }
     }
 
@@ -60,6 +64,13 @@ export default function InviteCode({ workspaceId }){
             })
     }
 
+    const displayCopy = () => {
+        setCopy(true)
+        setTimeout(() => {
+            setCopy(false)
+        }, 1000)
+    }
+
     return (
         <>
             <h3 className="font-bold text-lg">
@@ -72,19 +83,21 @@ export default function InviteCode({ workspaceId }){
 
                         </div> :
                         <button
-                            className="text-sm hover:text-error px-2 py-1 rounded-md"
+                            className="text-sm font-semibold text-error px-2 py-1 rounded-md"
                             onClick={deleteInviteCode}
                         >
                             Tắt liên kết mời
                         </button>
                 }
-                <button
-                    className="text-sm hover:text-primary px-2 py-1 rounded-md"
-                    onClick={inviteCodeHandler}
-                >
-                    <i className="fa-solid fa-link mr-1"></i>
-                    Mời bằng liên kết
-                </button>
+                <div className={`tooltip ${copy && "tooltip-success"} tooltip-top`} data-tip="Sao chép">
+                    <button
+                        className="text-sm font-semibold text-primary px-2 py-1 rounded-md"
+                        onClick={inviteCodeHandler}
+                    >
+                        <i className="fa-solid fa-link mr-1"></i>
+                        Mời bằng liên kết
+                    </button>
+                </div>
             </div>
         </>
     )

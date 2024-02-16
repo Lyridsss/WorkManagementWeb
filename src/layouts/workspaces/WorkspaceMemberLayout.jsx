@@ -16,8 +16,6 @@ export default function WorkspaceMemberLayout(){
     const [error, setError] = useState(null)
     const authAxiosRequest = useAuthAxiosRequest()
 
-    // Thêm hiệu ứng copy cho tạo liên kết
-
     const isErrorEmail = () => {
         const emailRegEx = new RegExp("^[\\w-.]+@([\\w-]+\\.)+[\\w-]{2,4}$")
         if (error){
