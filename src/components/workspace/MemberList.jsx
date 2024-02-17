@@ -2,6 +2,7 @@ import {useQuery} from "@tanstack/react-query";
 import {useAuthAxiosRequest} from "../../hooks/Request.jsx";
 import {useState} from "react";
 import {useNavigate} from "react-router-dom";
+import {useWorkspaceListHeaderUpdater} from "../../hooks/WorkspaceListHeader.jsx";
 
 export default function MemberList({ updateMemberList, setUpdateMemberList, workspace, account, updateWorkspaceFunc, roleConverter, roleList }){
     const authAxiosRequest = useAuthAxiosRequest()
@@ -10,6 +11,7 @@ export default function MemberList({ updateMemberList, setUpdateMemberList, work
     const [deleteMemberData, setDeleteMemberData] = useState(null)
     const [updateMemberData, setUpdateMemberData] = useState(null)
     const [role, setRole] = useState("OBSERVER")
+    const [workspaceListHeaderUpdate, workspaceListHeaderUpdater] = useWorkspaceListHeaderUpdater()
     const { data, isPending, isError } = useQuery({
         queryKey: ["workspace-member-list", updateMemberList, workspace?.id],
         queryFn: () => {
@@ -35,6 +37,7 @@ export default function MemberList({ updateMemberList, setUpdateMemberList, work
         authAxiosRequest
             .delete(`/workspaces/${workspace?.id}/members/${memberId}`)
             .then(() => {
+                workspaceListHeaderUpdater()
                 navigate("/workspaces")
             })
     }

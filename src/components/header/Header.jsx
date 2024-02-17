@@ -16,7 +16,6 @@ export default function Header({ isPending, data, update }){
 
             })
             .catch(error => {
-                // ???
                 console.log(error)
             })
     }

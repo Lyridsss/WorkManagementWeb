@@ -3,6 +3,7 @@ import {useEffect, useState} from "react";
 import {useAuthAxiosRequest} from "../../hooks/Request.jsx";
 import Input from "../../components/utils/Input.jsx";
 import Textarea from "../../components/utils/Textarea.jsx";
+import {useWorkspaceListHeaderUpdater} from "../../hooks/WorkspaceListHeader.jsx";
 
 export default function WorkspaceSettingsLayout(){
     const [data, isPending, isError, update] = useOutletContext()
@@ -11,6 +12,7 @@ export default function WorkspaceSettingsLayout(){
     const [name, setName] = useState(() => data?.name)
     const [description, setDescription] = useState(() => data?.description)
     const [confirm, setConfirm] = useState("")
+    const [workspaceListHeaderUpdate, workspaceListHeaderUpdater] = useWorkspaceListHeaderUpdater()
     const authAxiosRequest = useAuthAxiosRequest()
     const navigate = useNavigate()
 
@@ -91,6 +93,7 @@ export default function WorkspaceSettingsLayout(){
         authAxiosRequest
             .patch(`/workspaces/${data?.id}`, updateData)
             .then(() => {
+                workspaceListHeaderUpdater()
                 update()
             })
             .catch(error => {
@@ -102,6 +105,7 @@ export default function WorkspaceSettingsLayout(){
         authAxiosRequest
             .delete(`/workspaces/${data?.id}`)
             .then(() => {
+                workspaceListHeaderUpdater()
                 navigate("/workspaces")
             })
             .catch(error => {

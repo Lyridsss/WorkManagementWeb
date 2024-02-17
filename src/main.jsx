@@ -4,11 +4,14 @@ import './assets/index.css'
 import {RouterProvider} from "react-router-dom";
 import {router} from "./router/index.jsx";
 import {AuthenticationContextProvider} from "./context/AuthenticationContext.jsx";
+import {WorkspaceListHeaderContextProvider} from "./context/WorkspaceListHeaderContextProvider.jsx";
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-      <AuthenticationContextProvider>
-          <RouterProvider router={router} />
-      </AuthenticationContextProvider>
+      <WorkspaceListHeaderContextProvider>
+          <AuthenticationContextProvider>
+              <RouterProvider router={router}/>
+          </AuthenticationContextProvider>
+      </WorkspaceListHeaderContextProvider>
   </React.StrictMode>,
 )
