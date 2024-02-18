@@ -73,7 +73,7 @@ export default function InviteCode({ workspaceId }){
 
     return (
         <>
-            <h3 className="font-bold text-lg">
+            <h3 className="font-bold text-lg mb-1">
                 Mời bằng liên kết
             </h3>
             <div className="flex justify-between items-center">
@@ -83,7 +83,7 @@ export default function InviteCode({ workspaceId }){
 
                         </div> :
                         <button
-                            className="text-sm font-semibold text-error px-2 py-1 rounded-md"
+                            className="text-sm font-semibold text-error border border-error py-1 px-2 rounded-md hover:bg-error hover:text-base-100"
                             onClick={deleteInviteCode}
                         >
                             Tắt liên kết mời
@@ -91,7 +91,7 @@ export default function InviteCode({ workspaceId }){
                 }
                 <div className={`tooltip ${copy && "tooltip-success"} tooltip-top`} data-tip="Sao chép">
                     <button
-                        className="text-sm font-semibold text-primary px-2 py-1 rounded-md"
+                        className="text-sm font-semibold text-primary hover:bg-primary hover:text-base-100 border border-primary py-1 px-2 rounded-md"
                         onClick={inviteCodeHandler}
                     >
                         <i className="fa-solid fa-link mr-1"></i>

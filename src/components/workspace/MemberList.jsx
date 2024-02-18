@@ -72,7 +72,7 @@ export default function MemberList({ updateMemberList, setUpdateMemberList, work
                         Loading...
                     </div> :
                     <>
-                        <div className="w-full flex justify-between my-1.5">
+                        <div className="w-full flex justify-between my-2">
                             <div className="flex items-center">
                                 <>
                                     {
@@ -107,7 +107,7 @@ export default function MemberList({ updateMemberList, setUpdateMemberList, work
                                     workspace?.role === "ADMIN" ?
                                         <>
                                             <button
-                                                className="w-28 flex justify-start hover:text-primary hover:cursor-pointer disabled:text-gray-500 disabled:cursor-no-drop"
+                                                className="w-[115px] flex justify-center text-primary border border-primary py-1 px-2 rounded-md hover:bg-primary hover:text-base-100 cursor-pointer disabled:border-base-300 disabled:bg-base-300 disabled:text-gray-500 disabled:cursor-no-drop"
                                                 disabled={!isUpdate}
                                                 onClick={() => {
                                                     setUpdateMemberData({
@@ -124,7 +124,7 @@ export default function MemberList({ updateMemberList, setUpdateMemberList, work
                                             </button>
                                             <button
                                                 disabled={!isUpdate}
-                                                className="w-20 text-error hover:font-bold hover:cursor-pointer disabled:font-normal disabled:text-gray-500 disabled:cursor-no-drop ml-2"
+                                                className="w-20 flex justify-center text-error border border-error py-1 px-2 rounded-md hover:bg-error hover:text-base-100 cursor-pointer disabled:border-base-300 disabled:bg-base-300 disabled:text-gray-500 disabled:cursor-no-drop ml-2 mt-2 sm:mt-0"
                                                 onClick={() =>
                                                     document.getElementById('leave-workspace').showModal()
                                                 }
@@ -134,12 +134,12 @@ export default function MemberList({ updateMemberList, setUpdateMemberList, work
                                         </> :
                                         <>
                                             <div
-                                                className="w-28 flex justify-start"
+                                                className="w-[115px] flex justify-center text-gray-500 bg-base-300 py-1 px-2 rounded-md"
                                             >
                                                 {roleConverter(workspace.role)}
                                             </div>
                                             <button
-                                                className="w-20 text-error hover:font-bold hover:cursor-pointer ml-2"
+                                                className="w-20 flex justify-center text-error border border-error py-1 px-2 rounded-md hover:bg-error hover:text-base-100 cursor-pointer ml-2 mt-2 sm:mt-0"
                                                 onClick={() =>
                                                     document.getElementById('leave-workspace').showModal()
                                                 }
@@ -268,7 +268,7 @@ export default function MemberList({ updateMemberList, setUpdateMemberList, work
                         {
                             data?.filter(member => member.id !== account?.id).map(member =>
                                 <div
-                                    className="w-full flex justify-between my-1.5"
+                                    className="w-full flex justify-between my-2"
                                     key={member.id}
                                 >
                                     <div className="flex items-center">
@@ -305,7 +305,7 @@ export default function MemberList({ updateMemberList, setUpdateMemberList, work
                                             workspace?.role === "ADMIN" ?
                                                 <>
                                                     <button
-                                                        className="w-28 flex justify-start hover:text-primary hover:cursor-pointer"
+                                                        className="w-[115px] flex justify-center text-primary border border-primary py-1 px-2 rounded-md hover:bg-primary hover:text-base-100 cursor-pointer"
                                                         onClick={() => {
                                                             setUpdateMemberData({
                                                                 id: member.id,
@@ -320,7 +320,7 @@ export default function MemberList({ updateMemberList, setUpdateMemberList, work
                                                         {roleConverter(member.role)}
                                                     </button>
                                                     <button
-                                                        className="w-20 text-error hover:font-bold hover:cursor-pointer ml-2"
+                                                        className="w-20 flex justify-center text-error border border-error py-1 px-2 rounded-md hover:bg-error hover:text-base-100 cursor-pointer ml-2 mt-2 sm:mt-0"
                                                         onClick={() => {
                                                             setDeleteMemberData(member)
                                                             document.getElementById('delete-member-from-workspace').showModal()
@@ -331,12 +331,12 @@ export default function MemberList({ updateMemberList, setUpdateMemberList, work
                                                 </> :
                                                 <>
                                                     <div
-                                                        className="w-28 flex justify-start"
+                                                        className="w-[115px] flex justify-center text-gray-500 bg-base-300 py-1 px-2 rounded-md"
                                                     >
                                                         {roleConverter(member.role)}
                                                     </div>
                                                     <div
-                                                        className="w-20 h-10 ml-2"
+                                                        className="w-20 h-10 ml-2 hidden sm:flex"
                                                     >
                                                     </div>
                                                 </>

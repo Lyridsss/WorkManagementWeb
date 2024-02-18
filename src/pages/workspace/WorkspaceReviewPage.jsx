@@ -64,7 +64,7 @@ export default function WorkspaceReviewPage(){
     return (
         <>
             {token == null ?
-                <Navigate to="/login" replace/> :
+                <Navigate to={`/login?redirect=true&workspaceId=${workspaceId}&inviteCodeId=${inviteCodeId}`} replace/> :
                 <>
                     {error.isError ?
                         <div className="w-full h-screen flex justify-center items-center px-4">

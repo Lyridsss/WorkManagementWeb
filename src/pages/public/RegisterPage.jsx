@@ -141,7 +141,7 @@ export default function RegisterPage(){
                             error={isErrorConfirm()}
                         />
                         <button
-                            className={`btn btn-outline btn-primary px-6 mt-5`}
+                            className={`btn btn-outline btn-primary px-6 mt-5 mb-3`}
                             disabled={!isEnable()}
                             onClick={register}
                         >

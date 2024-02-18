@@ -2,13 +2,14 @@ import IntroHeader from "../../components/header/IntroHeader.jsx";
 import Input from "../../components/utils/Input.jsx";
 import {useContext, useState} from "react";
 import {AuthContext} from "../../context/AuthenticationContext.jsx";
-import {useNavigate} from "react-router-dom";
+import {useNavigate, useSearchParams} from "react-router-dom";
 import {useAxiosRequest} from "../../hooks/Request.jsx";
 
 export default function LoginPage(){
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [error, setError] = useState(null)
+    const [searchParams, setSearchParams] = useSearchParams();
     const axiosRequest = useAxiosRequest()
     const navigate = useNavigate()
     const { login } = useContext(AuthContext)
@@ -52,7 +53,14 @@ export default function LoginPage(){
                 login(res.data.token)
             })
             .then(() => {
-                navigate("/")
+                const redirect = Boolean(searchParams.get("redirect"))
+                const workspaceId = searchParams.get("workspaceId")
+                const inviteCodeId = searchParams.get("inviteCodeId")
+                if (redirect) {
+                    navigate(`/workspaces/${workspaceId}/invitations/${inviteCodeId}`)
+                } else {
+                    navigate("/workspaces")
+                }
             })
             .catch(() => {
                 setEmail("")
@@ -93,7 +101,7 @@ export default function LoginPage(){
                             error={isErrorPassword()}
                         />
                         <button
-                            className={`btn btn-outline btn-primary px-6 mt-5`}
+                            className={`btn btn-outline btn-primary px-6 mt-5 mb-4`}
                             disabled={!isEnable()}
                             onClick={submitHandler}
                         >
