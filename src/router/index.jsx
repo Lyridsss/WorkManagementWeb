@@ -23,6 +23,7 @@ import WorkspaceSettingsLayout from "../layouts/workspaces/WorkspaceSettingsLayo
 import WorkspaceMemberLayout from "../layouts/workspaces/WorkspaceMemberLayout.jsx";
 import WorkspaceReviewPage from "../pages/workspace/WorkspaceReviewPage.jsx";
 import TableHome from "../layouts/table/TableHome.jsx";
+import TableHomeView from "../components/table/TableHomeView.jsx";
 
 export const router = createBrowserRouter(
     createRoutesFromElements(
@@ -99,7 +100,12 @@ export const router = createBrowserRouter(
                 <Route
                     path=":tableId"
                     element={<TableHome />}
-                ></Route>
+                >
+                    <Route
+                        index
+                        element={<TableHomeView />}
+                    ></Route>
+                </Route>
                 <Route
                     path="form"
                     element={<TableForm/>}

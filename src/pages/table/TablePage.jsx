@@ -33,14 +33,14 @@ export default function TablePage(){
                 <div className="min-h-screen w-full flex justify-center items-center">
                     <span className="loading loading-spinner loading-lg text-primary"></span>
                 </div>:
-                <>
+                <div className="flex flex-col w-full">
                     <Header
                         data={data}
                         isPending={isPending}
                         update={update}
                     />
                     <Outlet context={[data, isPending, update]} />
-                </>
+                </div>
             }
         </div>
     )

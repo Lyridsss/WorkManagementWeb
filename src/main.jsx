@@ -5,13 +5,16 @@ import {RouterProvider} from "react-router-dom";
 import {router} from "./router/index.jsx";
 import {AuthenticationContextProvider} from "./context/AuthenticationContext.jsx";
 import {WorkspaceListHeaderContextProvider} from "./context/WorkspaceListHeaderContextProvider.jsx";
+import {TableStarListContextProvider} from "./context/TableStarListContextProvider.jsx";
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
       <WorkspaceListHeaderContextProvider>
-          <AuthenticationContextProvider>
-              <RouterProvider router={router}/>
-          </AuthenticationContextProvider>
+          <TableStarListContextProvider>
+              <AuthenticationContextProvider>
+                  <RouterProvider router={router}/>
+              </AuthenticationContextProvider>
+          </TableStarListContextProvider>
       </WorkspaceListHeaderContextProvider>
   </React.StrictMode>,
 )

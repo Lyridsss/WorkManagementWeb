@@ -1,14 +1,16 @@
-import {useParams} from "react-router-dom";
+import {Outlet, useParams} from "react-router-dom";
 import {useAuthAxiosRequest} from "../../hooks/Request.jsx";
 import {useQuery} from "@tanstack/react-query";
 import TableSideBar from "../../components/table/TableSideBar.jsx";
 import TableHomeView from "../../components/table/TableHomeView.jsx";
+import {useState} from "react";
 
 export default function TableHome(){
     const { tableId } = useParams()
     const authAxiosRequest = useAuthAxiosRequest()
+    const [times, setTimes] = useState(0)
     const { data, isPending, isError } = useQuery({
-        queryKey: ["table-home", tableId],
+        queryKey: ["table-home", tableId, times],
         queryFn: () => {
             return authAxiosRequest
                 .get(`/tables/${tableId}`)
@@ -18,6 +20,15 @@ export default function TableHome(){
                 })
         }
     })
+
+    const update = () => {
+        setTimes(prevState => prevState + 1)
+    }
+
+    const context = {
+        data,
+        update
+    }
 
     return (
         <>
@@ -32,12 +43,12 @@ export default function TableHome(){
                                 KHÔNG TÌM THẤY DỮ LIỆU
                             </p>
                         </div> :
-                        <div>
+                        <div className="flex flex-row w-full">
                             <TableSideBar
                                 workspaceId={data?.workspaceId}
                                 tableId={data?.id}
                             />
-                            <TableHomeView/>
+                            <Outlet context={context}/>
                         </div>
                     }
                 </>
