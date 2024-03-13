@@ -90,7 +90,7 @@ export default function Workspace(){
                                 </div>
                             </div>
                         </div>
-                        <div className="hidden md:col-span-2 lg:col-span-2 xl:col-span-2 md:flex md:flex-col">
+                        <div className="hidden md:col-span-2 lg:col-span-2 xl:col-span-2 md:flex md:flex-col border-r">
                             <div className="w-full flex flex-col my-2">
                                 <div className="collapse">
                                     <input type="checkbox" name="workspaces" defaultChecked={true}/>

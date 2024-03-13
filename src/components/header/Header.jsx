@@ -4,6 +4,7 @@ import {useContext, useState} from "react";
 import {AuthContext} from "../../context/AuthenticationContext.jsx";
 import Logo from "./Logo.jsx";
 import WorkspaceList from "./WorkspaceList.jsx";
+import TableStarList from "./TableStarList.jsx";
 
 export default function Header({ isPending, data, update }){
     const { logout } = useContext(AuthContext)
@@ -44,12 +45,7 @@ export default function Header({ isPending, data, update }){
                         Đã đánh dấu sao
                     </div>
                     <ul tabIndex={0} className="dropdown-content z-50 menu p-2 shadow bg-base-100 rounded-box w-52">
-                        <li>
-                            <a>Item 1</a>
-                        </li>
-                        <li>
-                            <a>Item 2</a>
-                        </li>
+                        <TableStarList />
                     </ul>
                 </div>
                 <Link
