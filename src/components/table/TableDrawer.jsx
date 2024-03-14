@@ -1,6 +1,16 @@
 import {Link} from "react-router-dom";
+import {useState} from "react";
+import TableDrawerOptions from "./TableDrawerOptions.jsx";
+import TableDrawerDetails from "./TableDrawerDetails.jsx";
 
 export default function TableDrawer({ table }){
+    const views = {
+        home: "HOME",
+        info: "INFO",
+        activity: "ACTIVITY",
+        background: "BACKGROUND"
+    }
+    const [display, setDisplay] = useState(views.home)
     return (
         <div className="flex items-center">
             <div className="drawer drawer-end">
@@ -11,59 +21,17 @@ export default function TableDrawer({ table }){
                     </label>
                 </div>
                 <div className="drawer-side z-50 top-[68px]">
-                    <label htmlFor="table-home-drawer" aria-label="close sidebar" className="drawer-overlay"></label>
+                    <label
+                        htmlFor="table-home-drawer"
+                        aria-label="close sidebar"
+                        className="drawer-overlay"
+                        onClick={() => setDisplay(views.home)}
+                    ></label>
                     <ul className="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
-                        <div className="w-full flex justify-center items-center text-xl font-bold py-2 border-b-2">
-                            Menu
-                        </div>
-                        <div className="flex flex-col">
-                            <button
-                                className="flex flex-row items-center outline-none py-1.5 hover:bg-base-300 hover:text-primary rounded-md cursor-pointer"
-                            >
-                                <i className="fa-solid fa-circle-info w-8 text-lg"></i>
-                                <p className="font-semibold">
-                                    Thông tin
-                                </p>
-                            </button>
-                            <button
-                                className="flex flex-row items-center outline-none py-1.5 hover:bg-base-300 hover:text-primary rounded-md cursor-pointer"
-                            >
-                                <i className="fa-solid fa-bars-staggered w-8 text-lg"></i>
-                                <p className="font-semibold">
-                                    Hoạt động
-                                </p>
-                            </button>
-                            {table?.role === "ADMIN" &&
-                                <button
-                                    className="flex flex-row items-center outline-none py-1.5 hover:bg-base-300 hover:text-primary rounded-md cursor-pointer"
-                                >
-                                    <i className="fa-solid fa-image w-8 text-lg"></i>
-                                    <p className="font-semibold">
-                                        Thay đổi hình nền
-                                    </p>
-                                </button>
-                            }
-                            <Link
-                                to={`/tables/${table?.id}/members`}
-                                className="flex flex-row items-center px-2 py-1.5 hover:bg-base-300 hover:text-primary rounded-md cursor-pointer"
-                            >
-                                <i className="fa-solid fa-user-group w-8 text-lg"></i>
-                                <p className="font-semibold">
-                                    Thành viên
-                                </p>
-                            </Link>
-                            {table?.role === "ADMIN" &&
-                                <Link
-                                    to={`/tables/${table?.id}/settings`}
-                                    className="flex flex-row items-center px-2 py-1.5 hover:bg-base-300 hover:text-primary rounded-md cursor-pointer"
-                                >
-                                    <i className="fa-solid fa-gear w-8 text-lg"></i>
-                                    <p className="font-semibold">
-                                        Cài đặt
-                                    </p>
-                                </Link>
-                            }
-                        </div>
+                        {display === "HOME" && <TableDrawerOptions table={table} options={views} setDisplay={setDisplay}/>}
+                        {display === "INFO" && <TableDrawerDetails table={table} />}
+                        {display === "ACTIVITY" && <div>Activity</div>}
+                        {display === "BACKGROUND" && <div>Background</div>}
                     </ul>
                 </div>
             </div>
