@@ -1,5 +1,6 @@
 import {useOutletContext} from "react-router-dom";
 import TableStar from "./TableStar.jsx";
+import TableScope from "./TableScope.jsx";
 
 export default function TableHomeView(){
     const { data, update } = useOutletContext()
@@ -19,6 +20,7 @@ export default function TableHomeView(){
                     <TableStar
                         tableId={data?.id}
                     />
+                    <TableScope table={data} update={update}/>
                 </div>
             </div>
         </div>

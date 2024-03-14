@@ -39,16 +39,17 @@ export default function TableStar({ tableId }){
     }
 
     return (
-        <div className="text-xl mx-2">
+        <div className="text-lg mx-2">
             {data == null ?
                 <button
-                    className="text-gray-600 hover:text-yellow-400"
+                    className="btn-ghost px-1 hover:bg-gray-200 rounded-md"
                     onClick={makingStar}
                 >
                     <i className="fa-solid fa-star"></i>
                 </button> :
                 <button
                     onClick={deleteStar}
+                    className="btn-ghost px-1 hover:bg-gray-200 rounded-md"
                 >
                     <i className="fa-solid fa-star text-yellow-400"></i>
                 </button>

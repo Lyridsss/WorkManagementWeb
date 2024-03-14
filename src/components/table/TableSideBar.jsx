@@ -93,7 +93,7 @@ export default function TableSideBar({ workspaceId, tableId }){
                         </h3>
                         {
                             (data?.role === "ADMIN" || data?.role === "MEMBER") &&
-                            <Link to="/tables/form" className="hover:text-primary">
+                            <Link to={`/tables/form?workspace=${workspaceId}`} className="hover:text-primary">
                                 <i className="fa-solid fa-plus"></i>
                             </Link>
                         }
