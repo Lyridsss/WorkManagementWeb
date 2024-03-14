@@ -11,13 +11,19 @@ export default function TableHome(){
     const [times, setTimes] = useState(0)
     const { data, isPending, isError } = useQuery({
         queryKey: ["table-home", tableId, times],
-        queryFn: () => {
-            return authAxiosRequest
+        queryFn: async () => {
+            const table = await authAxiosRequest
                 .get(`/tables/${tableId}`)
                 .then(res => res.data)
-                .catch(error => {
-                    console.log(error)
-                })
+                .catch(error => console.log(error))
+            const workspace = await authAxiosRequest
+                .get(`/workspaces/${table?.workspaceId}`)
+                .then(res => res.data)
+                .catch(error => console.log(error))
+            return {
+                table,
+                workspace
+            }
         }
     })
 
@@ -45,8 +51,8 @@ export default function TableHome(){
                         </div> :
                         <div className="flex flex-row w-full">
                             <TableSideBar
-                                workspaceId={data?.workspaceId}
-                                tableId={data?.id}
+                                workspace={data?.workspace}
+                                tableId={tableId}
                             />
                             <Outlet context={context}/>
                         </div>
