@@ -40,16 +40,16 @@ export default function TableHome(){
         <>
             {isPending ?
                 <div className="flex w-full h-screen justify-center items-center">
-                    <span className="loading loading-spinner loading-lg text-primary"></span>
+                    <span className="loading loading-dots loading-lg text-primary"></span>
                 </div> :
                 <>
-                    {isError ?
+                {isError ?
                         <div className="flex w-full h-screen justify-center items-center">
                             <p className="text-xl font-bold">
                                 KHÔNG TÌM THẤY DỮ LIỆU
                             </p>
                         </div> :
-                        <div className="flex flex-row w-full">
+                        <div className="w-full flex flex-row">
                             <TableSideBar
                                 workspace={data?.workspace}
                                 tableId={tableId}

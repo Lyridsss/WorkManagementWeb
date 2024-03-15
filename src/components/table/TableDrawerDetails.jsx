@@ -1,5 +1,5 @@
 
-export default function TableDrawerDetails({ table }){
+export default function TableDrawerDetails({ table, options, setDisplay  }){
     const getScopeName = scope => {
         if (scope === "GROUP") {
             return "Nhóm"
@@ -8,13 +8,21 @@ export default function TableDrawerDetails({ table }){
     }
     return (
         <>
-            <div className="w-full flex justify-center items-center text-xl font-bold py-2 border-b-2">
-                THÔNG TIN
+            <div className="w-full flex justify-center items-center text-xl font-bold py-2 border-b-2 relative">
+                <p>
+                    THÔNG TIN
+                </p>
+                <button
+                    className="flex absolute left-1 hover:text-primary"
+                    onClick={() => setDisplay(options.home)}
+                >
+                    <i className="fa-solid fa-chevron-left"></i>
+                </button>
             </div>
             <div
                 className="flex flex-row my-1 w-full rounded-md p-1"
             >
-                {
+            {
                     table?.background == null ?
                         <div className="avatar placeholder mr-2">
                             <div
