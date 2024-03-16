@@ -42,7 +42,7 @@ export default function TableStar({ tableId }){
         <div className="text-lg mx-2">
             {data == null ?
                 <button
-                    className="btn-ghost px-1 hover:bg-gray-300 rounded-md"
+                    className="btn-ghost px-1 hover:bg-gray-800 hover:text-yellow-400 rounded-md"
                     onClick={makingStar}
                 >
                     <i className="fa-solid fa-star"></i>

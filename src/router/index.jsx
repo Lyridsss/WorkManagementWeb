@@ -24,6 +24,7 @@ import WorkspaceMemberLayout from "../layouts/workspaces/WorkspaceMemberLayout.j
 import WorkspaceReviewPage from "../pages/workspace/WorkspaceReviewPage.jsx";
 import TableHome from "../layouts/table/TableHome.jsx";
 import TableHomeView from "../components/table/TableHomeView.jsx";
+import TableMember from "../layouts/table/TableMember.jsx";
 
 export const router = createBrowserRouter(
     createRoutesFromElements(
@@ -104,6 +105,10 @@ export const router = createBrowserRouter(
                     <Route
                         index
                         element={<TableHomeView />}
+                    ></Route>
+                    <Route
+                        path="members"
+                        element={<TableMember />}
                     ></Route>
                 </Route>
                 <Route

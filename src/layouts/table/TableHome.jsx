@@ -4,6 +4,10 @@ import {useQuery} from "@tanstack/react-query";
 import TableSideBar from "../../components/table/TableSideBar.jsx";
 import TableHomeView from "../../components/table/TableHomeView.jsx";
 import {useState} from "react";
+import TableStar from "../../components/table/TableStar.jsx";
+import TableScope from "../../components/table/TableScope.jsx";
+import JoiningTable from "../../components/table/JoiningTable.jsx";
+import TableDrawer from "../../components/table/TableDrawer.jsx";
 
 export default function TableHome(){
     const { tableId } = useParams()
@@ -49,14 +53,35 @@ export default function TableHome(){
                                 KHÔNG TÌM THẤY DỮ LIỆU
                             </p>
                         </div> :
-                        <div className="w-full flex flex-row">
-                            <TableSideBar
-                                workspace={data?.workspace}
-                                tableId={tableId}
-                            />
+                    <div className="w-full flex flex-row">
+                        <TableSideBar
+                            workspace={data?.workspace}
+                            tableId={tableId}
+                        />
+                        <div
+                            className={`w-full flex flex-col min-h-screen`}
+                        >
+                            <div
+                                className="w-full h-18 flex flex-row justify-between items-center py-2 bg-gray-950 text-base-100"
+                            >
+                                <div className="flex flex-row justify-start items-center sm:ml-6">
+                                    <h1 className="text-2xl font-bold">
+                                        {data?.table.name}
+                                    </h1>
+                                    <TableStar
+                                        tableId={data?.table.id}
+                                    />
+                                    <TableScope table={data?.table} update={update}/>
+                                </div>
+                                <div className="flex flex-row justify-end items-center sm:mr-6">
+                                    <JoiningTable table={data?.table} update={update} workspace={data?.workspace}/>
+                                    <TableDrawer table={data?.table} update={update}/>
+                                </div>
+                            </div>
                             <Outlet context={context}/>
                         </div>
-                    }
+                    </div>
+                }
                 </>
             }
         </>

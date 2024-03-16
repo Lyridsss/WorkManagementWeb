@@ -16,13 +16,13 @@ export default function TableScope({ table, update }){
         <>
             {table?.role === "ADMIN" &&
                 <div className="dropdown">
-                    <div tabIndex={0} role="button" className="btn-ghost px-1 hover:bg-gray-300 rounded-md text-lg">
+                    <div tabIndex={0} role="button" className="btn-ghost px-1 hover:bg-gray-800 rounded-md text-lg">
                         {table?.scope === "GROUP" ?
                             <i className="fa-solid fa-lock text-red-600"></i> :
                             <i className="fa-solid fa-user-group text-green-600"></i>
                         }
                     </div>
-                    <ul tabIndex={0} className="dropdown-content z-10 menu p-2 shadow bg-base-100 rounded-box w-72">
+                    <ul tabIndex={0} className="dropdown-content z-10 menu p-2 shadow bg-base-100 rounded-box w-72 text-base-content">
                         <li className="w-full">
                             <button
                                 className="flex flex-col w-full"

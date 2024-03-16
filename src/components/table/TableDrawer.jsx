@@ -16,7 +16,7 @@ export default function TableDrawer({ table, update }){
         <div className="drawer drawer-end">
             <input id="table-home-drawer" type="checkbox" className="drawer-toggle"/>
             <div className="drawer-content">
-                <label htmlFor="table-home-drawer" className="drawer-button hover:cursor-pointer text-lg hover:text-primary hover:bg-gray-300 px-2 py-1 rounded-md">
+                <label htmlFor="table-home-drawer" className="drawer-button hover:cursor-pointer text-lg hover:text-primary hover:bg-gray-800 px-2 py-1 rounded-md">
                     <i className="fa-solid fa-ellipsis"></i>
                 </label>
             </div>
