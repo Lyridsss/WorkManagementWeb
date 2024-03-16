@@ -29,7 +29,7 @@ export default function TableHomeView(){
                 </div>
                 <div className="flex flex-row justify-end items-center sm:mr-6">
                     <JoiningTable table={table} update={update} workspace={workspace}/>
-                    <TableDrawer table={table} />
+                    <TableDrawer table={table} update={update}/>
                 </div>
             </div>
         </div>

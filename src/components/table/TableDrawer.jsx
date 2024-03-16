@@ -1,11 +1,10 @@
-import {Link} from "react-router-dom";
 import {useState} from "react";
 import TableDrawerOptions from "./TableDrawerOptions.jsx";
 import TableDrawerDetails from "./TableDrawerDetails.jsx";
 import TableDrawerActivity from "./TableDrawerActivity.jsx";
 import TableDrawerBackground from "./TableDrawerBackground.jsx";
 
-export default function TableDrawer({ table }){
+export default function TableDrawer({ table, update }){
     const views = {
         home: "HOME",
         info: "INFO",
@@ -32,7 +31,7 @@ export default function TableDrawer({ table }){
                     {display === "HOME" && <TableDrawerOptions table={table} options={views} setDisplay={setDisplay}/>}
                     {display === "INFO" && <TableDrawerDetails table={table} options={views} setDisplay={setDisplay}/>}
                     {display === "ACTIVITY" && <TableDrawerActivity table={table} options={views} setDisplay={setDisplay}/>}
-                    {display === "BACKGROUND" && <TableDrawerBackground table={table} options={views} setDisplay={setDisplay}/>}
+                    {display === "BACKGROUND" && <TableDrawerBackground table={table} options={views} setDisplay={setDisplay} update={update}/>}
                 </ul>
             </div>
         </div>
