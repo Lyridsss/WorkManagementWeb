@@ -2,7 +2,7 @@ import {useAuthAxiosRequest} from "../../hooks/Request.jsx";
 import {useQuery} from "@tanstack/react-query";
 import {useState} from "react";
 
-export default function MembersInWorkspaceButNotInTable({ table }){
+export default function MembersInWorkspaceButNotInTable({ table, update }){
     const authAxiosRequest = useAuthAxiosRequest()
     const [role, setRole] = useState("OBSERVER")
     const [times, setTimes] = useState(0)
@@ -14,10 +14,6 @@ export default function MembersInWorkspaceButNotInTable({ table }){
             .catch(error => console.log(error))
     })
 
-    const update = () => {
-        setTimes(prevState => prevState + 1)
-    }
-
     const addMemberToTable = member => {
         const data = {
             accountId: member.id,
@@ -26,6 +22,7 @@ export default function MembersInWorkspaceButNotInTable({ table }){
         authAxiosRequest
             .post(`/tables/${table?.id}/members`, data)
             .then(res => {
+                setTimes(prevState => prevState + 1)
                 update()
             })
             .catch(error => console.log(error))

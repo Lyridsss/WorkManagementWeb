@@ -53,13 +53,13 @@ export default function TableHome(){
                                 KHÔNG TÌM THẤY DỮ LIỆU
                             </p>
                         </div> :
-                    <div className="w-full flex flex-row">
+                    <div className={`w-full h-full flex flex-row`}>
                         <TableSideBar
                             workspace={data?.workspace}
                             tableId={tableId}
                         />
                         <div
-                            className={`w-full flex flex-col min-h-screen`}
+                            className="w-full flex flex-col"
                         >
                             <div
                                 className="w-full h-18 flex flex-row justify-between items-center py-2 bg-gray-950 text-base-100"

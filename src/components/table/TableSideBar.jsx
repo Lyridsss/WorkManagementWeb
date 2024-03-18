@@ -6,8 +6,10 @@ import TableList from "./TableList.jsx";
 
 export default function TableSideBar({ workspace, tableId }){
     const [display, setDisplay] = useState(true)
+    const height = window.screen.availHeight
+
     return (
-        <div className={`${display ? "w-72" : "w-4"} h-screen hidden sm:flex flex-col border-r duration-400`}>
+        <div className={`${display ? "w-72" : "w-4"} h-full hidden sm:flex flex-col border-r duration-400`}>
             <div className="relative w-full">
                 <button
                     className="text-base-content bg-base-200 hover:text-primary z-10 w-8 h-8 border rounded-full absolute -right-5"

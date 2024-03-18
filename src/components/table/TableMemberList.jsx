@@ -1,16 +1,20 @@
 import {useAuthAxiosRequest} from "../../hooks/Request.jsx";
 import {useQuery} from "@tanstack/react-query";
 import MembersInWorkspaceButNotInTable from "./MembersInWorkspaceButNotInTable.jsx";
+import TableMembers from "./TableMembers.jsx";
 
 export default function TableMemberList({ workspace, table, update }){
     const authAxiosRequest = useAuthAxiosRequest()
+    const tableId = table?.id
     const { data, isPending, isError } = useQuery({
-        queryKey: ["table-member-list", table?.id],
-        queryFn: authAxiosRequest
-            .get(`/tables/${table?.id}/members`)
-            .then(res => res.data)
-            .catch(error => console.log(error))
+        queryKey: ["table-member-list", tableId],
+        queryFn: () =>
+            authAxiosRequest
+                .get(`/tables/${tableId}/members`)
+                .then(res => res.data)
+                .catch(error => error.response?.data)
     })
+
     return (
         <div className="w-full flex flex-col">
             <div className="flex flex-row justify-between items-center mx-6 my-3">
@@ -33,7 +37,7 @@ export default function TableMemberList({ workspace, table, update }){
             <dialog id="add-member-to-table-model" className="modal">
                 <div className="modal-box">
                     <h3 className="font-bold text-lg">Thêm thành viên</h3>
-                    <MembersInWorkspaceButNotInTable table={table}/>
+                    <MembersInWorkspaceButNotInTable table={table} update={update}/>
                 </div>
                 <form method="dialog" className="modal-backdrop">
                     <button>
@@ -41,6 +45,9 @@ export default function TableMemberList({ workspace, table, update }){
                     </button>
                 </form>
             </dialog>
+            <div className="w-full h-full">
+                <TableMembers table={table} members={data}/>
+            </div>
         </div>
     )
 }
