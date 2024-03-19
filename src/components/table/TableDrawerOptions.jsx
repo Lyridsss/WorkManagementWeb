@@ -52,6 +52,9 @@ export default function TableDrawerOptions({ table, options, setDisplay }){
                     <Link
                         to={`/tables/${table?.id}/settings`}
                         className="flex flex-row items-center px-2 py-1.5 hover:bg-base-300 hover:text-primary rounded-md cursor-pointer"
+                        onClick={() => {
+                            document.getElementById("table-home-drawer").onClick()
+                        }}
                     >
                         <i className="fa-solid fa-gear w-8 text-lg"></i>
                         <p className="font-semibold">

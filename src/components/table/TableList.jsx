@@ -15,12 +15,13 @@ export default function TableList({ workspaceId, tableId }){
     return (
         <div className="w-full flex flex-col ml-2 my-1">
             {
-                isError ?
-                    <div>
-                        Không tìm thấy dữ liệu
+                isError || isPending ?
+                    <div className="my-1 flex items-center p-1">
+                        <div className="skeleton w-10 h-8 mr-2 rounded-md"></div>
+                        <div className="skeleton w-full h-6 rounded-md"></div>
                     </div> :
                     <>
-                        {
+                    {
                             data?.map(table =>
                                 <Link
                                     key={table.id}

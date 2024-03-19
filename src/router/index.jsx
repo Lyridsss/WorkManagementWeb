@@ -25,6 +25,7 @@ import WorkspaceReviewPage from "../pages/workspace/WorkspaceReviewPage.jsx";
 import TableHome from "../layouts/table/TableHome.jsx";
 import TableHomeView from "../components/table/TableHomeView.jsx";
 import TableMember from "../layouts/table/TableMember.jsx";
+import TableSettings from "../components/table/TableSettings.jsx";
 
 export const router = createBrowserRouter(
     createRoutesFromElements(
@@ -109,6 +110,16 @@ export const router = createBrowserRouter(
                     <Route
                         path="members"
                         element={<TableMember />}
+                        loader={() => {
+                            return axiosAuthRequest(tokenService.getToken())
+                                .get("/account")
+                                .then(res => res.data)
+                                .catch(error => error)
+                        }}
+                    ></Route>
+                    <Route
+                        path="settings"
+                        element={<TableSettings />}
                     ></Route>
                 </Route>
                 <Route

@@ -3,17 +3,10 @@ import {useAuthAxiosRequest} from "../../hooks/Request.jsx";
 import {useState} from "react";
 import {useNavigate} from "react-router-dom";
 
-export default function TableMembers({ members, table, updateTable, updateMemberList }){
+export default function TableMembers({ members, table, updateTable, updateMemberList, user }){
     const authAxiosRequest = useAuthAxiosRequest()
-    const { data, isPending, isError } = useQuery({
-        queryKey: ["account"],
-        queryFn: () => authAxiosRequest
-            .get("/account")
-            .then(res => res.data)
-            .catch(error => error.response?.data)
-    })
-    const account = members?.at(members?.findIndex(member => member.id === data?.id))
-    const others = members?.filter(member => member.id !== data?.id)
+    const account = members?.at(members?.findIndex(member => member.id === user?.id))
+    const others = members?.filter(member => member.id !== user?.id)
     const [updatedMember, setUpdatedMember] = useState(null)
     const [deleteMember, setDeleteMember] = useState(null)
     const [role, setRole] = useState("OBSERVER")

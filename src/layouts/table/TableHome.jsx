@@ -53,7 +53,7 @@ export default function TableHome(){
                                 KHÔNG TÌM THẤY DỮ LIỆU
                             </p>
                         </div> :
-                    <div className={`w-full h-full flex flex-row`}>
+                    <div className="w-full h-full flex flex-row">
                         <TableSideBar
                             workspace={data?.workspace}
                             tableId={tableId}
@@ -62,7 +62,7 @@ export default function TableHome(){
                             className="w-full flex flex-col"
                         >
                             <div
-                                className="w-full h-18 flex flex-row justify-between items-center py-2 bg-gray-950 text-base-100"
+                                className="w-full flex flex-row justify-between items-center py-2 bg-gray-950 text-base-100"
                             >
                                 <div className="flex flex-row justify-start items-center sm:ml-6">
                                     <h1 className="text-2xl font-bold">
@@ -73,7 +73,7 @@ export default function TableHome(){
                                     />
                                     <TableScope table={data?.table} update={update}/>
                                 </div>
-                                <div className="flex flex-row justify-end items-center sm:mr-6">
+                                <div className="flex flex-row justify-end items-center mr-4 sm:mr-6">
                                     <JoiningTable table={data?.table} update={update} workspace={data?.workspace}/>
                                     <TableDrawer table={data?.table} update={update}/>
                                 </div>

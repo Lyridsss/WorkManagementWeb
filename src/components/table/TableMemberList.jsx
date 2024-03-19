@@ -4,7 +4,7 @@ import MembersInWorkspaceButNotInTable from "./MembersInWorkspaceButNotInTable.j
 import TableMembers from "./TableMembers.jsx";
 import {useState} from "react";
 
-export default function TableMemberList({ workspace, table, update }){
+export default function TableMemberList({ workspace, table, update, account }){
     const authAxiosRequest = useAuthAxiosRequest()
     const tableId = table?.id
     const [times, setTimes] = useState(0)
@@ -64,7 +64,13 @@ export default function TableMemberList({ workspace, table, update }){
                             </div>
                         </div>
                     </div> :
-                    <TableMembers table={table} members={data} updateTable={update} updateMemberList={() => setTimes(prevState => prevState + 1)}/>
+                    <TableMembers
+                        table={table}
+                        members={data}
+                        updateTable={update}
+                        updateMemberList={() => setTimes(prevState => prevState + 1)}
+                        user={account}
+                    />
                 }
             </div>
         </div>
