@@ -11,14 +11,17 @@ export default function JoiningTable({ table, update, workspace }){
             .catch(error => console.log(error))
     }
     return (
-        <div>
+        <div className="w-full">
             {
                 (table?.role == null && workspace?.role === "ADMIN") &&
                 <button
-                    className="btn-ghost px-1 hover:bg-gray-300 rounded-md text-lg text-green-600"
+                    className="btn-ghost flex justify-center items-center w-32 px-1 hover:bg-gray-300 rounded-md text-lg text-green-600"
                     onClick={joinTable}
                 >
-                    <i className="fa-solid fa-user-plus"></i> Tham gia
+                    <i className="fa-solid fa-user-plus"></i>
+                    <p className="ml-2">
+                        Tham gia
+                    </p>
                 </button>
             }
         </div>
