@@ -59,7 +59,7 @@ export default function TableHome(){
                             tableId={tableId}
                         />
                         <div
-                            className="w-full flex flex-col"
+                            className="w-full lg:w-4/5 flex flex-col"
                         >
                             <div
                                 className="w-full flex flex-row justify-between items-center py-2 bg-gray-950 text-base-100"

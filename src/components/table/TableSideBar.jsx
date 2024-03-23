@@ -5,23 +5,9 @@ import {Link} from "react-router-dom";
 import TableList from "./TableList.jsx";
 
 export default function TableSideBar({ workspace, tableId }){
-    const [display, setDisplay] = useState(true)
-    const height = window.screen.availHeight
-
     return (
-        <div className={`${display ? "w-72" : "w-4"} h-full hidden sm:flex flex-col border-r duration-400`}>
-            <div className="relative w-full">
-                <button
-                    className="text-base-content bg-base-200 hover:text-primary z-10 w-8 h-8 border rounded-full absolute -right-5"
-                    onClick={() => setDisplay(!display)}
-                >
-                    {display ?
-                        <i className="fa-solid fa-chevron-left"></i> :
-                        <i className="fa-solid fa-chevron-right"></i>
-                    }
-                </button>
-            </div>
-            <div className={`${display ? "flex" : "hidden"} flex-col w-full py-2 px-4 duration-500`}>
+        <div className="w-1/5 h-full hidden lg:flex flex-col border-r duration-400">
+            <div className="flex flex-col w-full py-2 px-4 duration-500">
                 <div className="flex flex-row">
                     {
                         workspace?.background == null ?

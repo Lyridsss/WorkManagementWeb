@@ -33,7 +33,7 @@ export default function TablePage(){
                 <div className="min-h-screen w-full flex justify-center items-center">
                     <span className="loading loading-spinner loading-lg text-primary"></span>
                 </div>:
-                <div className="w-full h-screen flex flex-col">
+                <div className="w-screen h-screen flex flex-col">
                     <Header
                         data={data}
                         isPending={isPending}
