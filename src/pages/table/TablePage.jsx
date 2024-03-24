@@ -28,12 +28,12 @@ export default function TablePage(){
     }
 
     return (
-        <div className="bg-base-100 text-base-content">
+        <div className="w-full bg-base-100 text-base-content">
             {isPending ?
                 <div className="min-h-screen w-full flex justify-center items-center">
                     <span className="loading loading-spinner loading-lg text-primary"></span>
                 </div>:
-                <div className="w-screen h-screen flex flex-col">
+                <div className="w-full flex flex-col">
                     <Header
                         data={data}
                         isPending={isPending}

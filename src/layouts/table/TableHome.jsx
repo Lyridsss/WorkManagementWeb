@@ -48,7 +48,7 @@ export default function TableHome(){
                 </div> :
                 <>
                 {isError ?
-                        <div className="flex w-full h-screen justify-center items-center">
+                        <div className="flex w-full h-full justify-center items-center">
                             <p className="text-xl font-bold">
                                 KHÔNG TÌM THẤY DỮ LIỆU
                             </p>
