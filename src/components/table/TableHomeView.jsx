@@ -21,7 +21,7 @@ export default function TableHomeView(){
 
     return (
         <div
-            className="w-full h-full flex flex-row overflow-x-scroll overflow-y-hidden"
+            className="w-full h-full flex flex-row overflow-x-auto overflow-y-hidden"
             style={{
                 backgroundImage: `url("${table?.background}")`,
                 backgroundColor: "#f9fafb",

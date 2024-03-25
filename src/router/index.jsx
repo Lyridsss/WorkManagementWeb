@@ -26,6 +26,7 @@ import TableHome from "../layouts/table/TableHome.jsx";
 import TableHomeView from "../components/table/TableHomeView.jsx";
 import TableMember from "../layouts/table/TableMember.jsx";
 import TableSettings from "../components/table/TableSettings.jsx";
+import TableActivity from "../components/table/TableActivity.jsx";
 
 export const router = createBrowserRouter(
     createRoutesFromElements(
@@ -116,6 +117,10 @@ export const router = createBrowserRouter(
                                 .then(res => res.data)
                                 .catch(error => error)
                         }}
+                    ></Route>
+                    <Route
+                        path="activities"
+                        element={<TableActivity />}
                     ></Route>
                     <Route
                         path="settings"

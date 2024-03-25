@@ -1,14 +1,13 @@
 import {useState} from "react";
 import TableDrawerOptions from "./TableDrawerOptions.jsx";
 import TableDrawerDetails from "./TableDrawerDetails.jsx";
-import TableDrawerActivity from "./TableDrawerActivity.jsx";
+import TableActivity from "./TableActivity.jsx";
 import TableDrawerBackground from "./TableDrawerBackground.jsx";
 
 export default function TableDrawer({ table, update }){
     const views = {
         home: "HOME",
         info: "INFO",
-        activity: "ACTIVITY",
         background: "BACKGROUND"
     }
     const [display, setDisplay] = useState(views.home)
@@ -30,7 +29,6 @@ export default function TableDrawer({ table, update }){
                 <ul className="p-4 w-80 min-h-full bg-base-200 text-base-content">
                     {display === "HOME" && <TableDrawerOptions table={table} options={views} setDisplay={setDisplay}/>}
                     {display === "INFO" && <TableDrawerDetails table={table} options={views} setDisplay={setDisplay}/>}
-                    {display === "ACTIVITY" && <TableDrawerActivity table={table} options={views} setDisplay={setDisplay}/>}
                     {display === "BACKGROUND" && <TableDrawerBackground table={table} options={views} setDisplay={setDisplay} update={update}/>}
                 </ul>
             </div>
